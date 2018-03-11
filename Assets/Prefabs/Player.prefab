@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 54690896190482468}
   - component: {fileID: 82695872796689190}
   - component: {fileID: 114558495898574436}
+  - component: {fileID: 114499012602981378}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -520,6 +521,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
   m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
+--- !u!114 &114499012602981378
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1464375293215242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02eb18d116ad0458fae8c731ac324c6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 100
 --- !u!114 &114558495898574436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -531,10 +544,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a4f7c54383844bb4ba727635cb6a3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingForce: 100
-  barrelEnd: {fileID: 4999013659595812}
+  muzzleSpeed: 100
   bulletPrefab: {fileID: 1553683705690344, guid: 9ce9ff4a073494126b9d0c5370936521,
     type: 2}
+  barrelEnd: {fileID: 4999013659595812}
 --- !u!124 &124447382513367070
 Behaviour:
   m_ObjectHideFlags: 1
