@@ -8,6 +8,13 @@ public class Projectile : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision) {
 
+        if (collision.collider.gameObject.CompareTag("DeflectProjectiles")) {
+
+            //var rb = GetComponent<Rigidbody>();
+            //rb.velocity += collision.relativeVelocity;
+            return;
+        }
+
         Explode();
 
         var health = collision.gameObject.GetComponent<Health>();

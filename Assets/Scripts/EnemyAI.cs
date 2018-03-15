@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-// TODO Make state machine: move to player / aim and shoot (once close enough).
 [RequireComponent(typeof(NavMeshAgent), typeof(EnemyShootingController))]
 public class EnemyAI : MonoBehaviour {
     

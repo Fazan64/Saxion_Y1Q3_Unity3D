@@ -56,8 +56,9 @@ GameObject:
   - component: {fileID: 114356696366790228}
   - component: {fileID: 54690896190482468}
   - component: {fileID: 82695872796689190}
-  - component: {fileID: 114558495898574436}
   - component: {fileID: 114499012602981378}
+  - component: {fileID: 114989152791199634}
+  - component: {fileID: 114305503479627358}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -116,6 +117,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1726288158598728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4198181581934586}
+  - component: {fileID: 33516948188135708}
+  - component: {fileID: 135931501097409488}
+  - component: {fileID: 23461954629260360}
+  m_Layer: 8
+  m_Name: Shield
+  m_TagString: DeflectProjectiles
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4198181581934586
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1726288158598728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_Children: []
+  m_Father: {fileID: 4668096448906236}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4219003017685884
 Transform:
   m_ObjectHideFlags: 1
@@ -163,11 +195,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1464375293215242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: -8.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4423543281572270}
   - {fileID: 4219003017685884}
+  - {fileID: 4198181581934586}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -193,7 +226,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1050869318930412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.42, y: 0.5899999, z: 1.1500006}
+  m_LocalPosition: {x: 0.42, y: 0.5899999, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4737132672962148}
@@ -235,6 +268,40 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!23 &23461954629260360
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1726288158598728}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: a602920a77e934e3bb53de27acaa4686, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!23 &23637169396836838
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -310,6 +377,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1172264969679126}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &33516948188135708
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1726288158598728}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33534524367341278
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -331,7 +405,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!81 &81669194872551430
 AudioListener:
   m_ObjectHideFlags: 1
@@ -419,6 +493,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114305503479627358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1464375293215242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac057990784b2413d989204628b5b29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxEnergy: 100
+  powerDraw: 100
+  recoveryRate: 100
+  remainingEnergy: 100
+  collider: {fileID: 135931501097409488}
+  renderer: {fileID: 23461954629260360}
 --- !u!114 &114356696366790228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -533,7 +624,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 100
---- !u!114 &114558495898574436
+  destroyOnDeath: 0
+  canBeReduced: 1
+--- !u!114 &114989152791199634
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -541,13 +634,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1464375293215242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a4f7c54383844bb4ba727635cb6a3f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 7483197867a2c43a7a8e5684e100df06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   muzzleSpeed: 100
   bulletPrefab: {fileID: 1553683705690344, guid: 9ce9ff4a073494126b9d0c5370936521,
     type: 2}
   barrelEnd: {fileID: 4999013659595812}
+  shield: {fileID: 114305503479627358}
 --- !u!124 &124447382513367070
 Behaviour:
   m_ObjectHideFlags: 1
@@ -555,6 +649,18 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1601167813047910}
   m_Enabled: 1
+--- !u!135 &135931501097409488
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1726288158598728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136591689821286406
 CapsuleCollider:
   m_ObjectHideFlags: 1

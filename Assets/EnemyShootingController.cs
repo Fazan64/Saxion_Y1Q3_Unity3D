@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyShootingController : MonoBehaviour {
 
     public GameObject bulletPrefab;
+    public float muzzleSpeed = 100f;
 
     public bool CanShootAt(GameObject target) {
 
@@ -27,7 +28,10 @@ public class EnemyShootingController : MonoBehaviour {
         Vector3 delta = target.transform.position - transform.position;
         Vector3 direction = delta.normalized;
 
-        Shoot(position: transform.position + direction * 1.2f, startVelocity: direction * 100f);
+        Shoot(
+            position: transform.position + direction * 1.2f, 
+            startVelocity: direction * muzzleSpeed
+        );
     }
 
     private void Shoot(Vector3 position, Vector3 startVelocity) {
