@@ -6,12 +6,25 @@ public class Projectile : MonoBehaviour {
 
     public int damage = 1;
 
+    Vector3 startPosition;
+
+    void Start() {
+
+        startPosition = transform.position;
+    }
+
     void OnCollisionEnter(Collision collision) {
 
         if (collision.collider.gameObject.CompareTag("DeflectProjectiles")) {
 
-            //var rb = GetComponent<Rigidbody>();
-            //rb.velocity += collision.relativeVelocity;
+            var rb = GetComponent<Rigidbody>();
+
+            Vector3 startVelocity = Ballistics.GetStartVelocity(
+                start: collision.contacts[0].point,
+                target: startPosition,
+                muzzleSpeed: collision.relativeVelocity.magnitude
+            );
+            rb.velocity = startVelocity;
             return;
         }
 
