@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour {
 
     public int damage = 1;
 
-    private void OnCollisionEnter(Collision collision) {
+    void OnCollisionEnter(Collision collision) {
 
         if (collision.collider.gameObject.CompareTag("DeflectProjectiles")) {
 
@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour {
         health.health -= damage;
     }
 
-    void Explode() {
+    private void Explode() {
 
         Debug.Log("Explosion goes here.");
         Destroy(gameObject);
