@@ -10,20 +10,24 @@ public class EnemyShootingController : MonoBehaviour {
 
     public bool CanShootAt(GameObject target) {
 
+        Vector3 delta = target.transform.position - transform.position;
+
         RaycastHit hit;
         bool didHit = Physics.SphereCast(
             origin: transform.position,
-            radius: 10f,
-            direction: (target.transform.position - transform.position).normalized,
+            radius: 0.2f,
+            direction: delta.normalized,
             hitInfo: out hit,
-            maxDistance: 100f,
-            layerMask: Physics.DefaultRaycastLayers & ~target.layer
+            maxDistance: delta.magnitude,
+            layerMask: Physics.DefaultRaycastLayers & ~(1 << target.layer)
         );
 
-        return !didHit || hit.collider.gameObject != gameObject;
+        if (didHit && hit.collider.gameObject != gameObject) return false;
+
+        return true;
     }
 
-    public void ShootAt(GameObject target) {
+    public bool ShootAt(GameObject target) {
 
         /*Vector3 delta = target.transform.position - transform.position;
         Vector3 direction = delta.normalized;
@@ -38,18 +42,21 @@ public class EnemyShootingController : MonoBehaviour {
         Vector3 direction = flatDelta.normalized;
 
         Vector3 shootPosition = transform.position + direction * 1.2f;
-        //shootPosition.y += 1f;
 
-        Vector3 startVelocity = Ballistics.GetStartVelocity(
+        Vector3? startVelocity = Ballistics.GetStartVelocity(
             start: shootPosition,
             target: target.transform.position,
             muzzleSpeed: muzzleSpeed
         );
 
+        if (!startVelocity.HasValue) return false;
+
         Shoot(
             position: shootPosition,
-            startVelocity: startVelocity
+            startVelocity: startVelocity.Value
         );
+
+        return true;
     }
 
     private void Shoot(Vector3 position, Vector3 startVelocity) {

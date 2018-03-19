@@ -505,7 +505,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxEnergy: 100
-  powerDraw: 100
+  minEnergyToTurnOn: 100
+  powerDraw: 50
   recoveryRate: 100
   remainingEnergy: 100
   collider: {fileID: 135931501097409488}
@@ -625,7 +626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 100
   destroyOnDeath: 0
-  canBeReduced: 1
+  canBeReduced: 0
 --- !u!114 &114989152791199634
 MonoBehaviour:
   m_ObjectHideFlags: 1

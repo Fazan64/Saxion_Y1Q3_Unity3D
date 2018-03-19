@@ -4,7 +4,7 @@ using System;
 
 public static class Ballistics {
 
-    public static Vector3 GetStartVelocity(
+    public static Vector3? GetStartVelocity(
         Vector3 start,
         Vector3 target,
         float muzzleSpeed
@@ -21,6 +21,8 @@ public static class Ballistics {
         float g = Mathf.Abs(Physics.gravity.y);
 
         float angle = Mathf.Atan((vSqr - Mathf.Sqrt(vSqr * vSqr - g * (g * x * x + 2f * y * vSqr))) / (x * g));
+        if (float.IsNaN(angle)) return null;
+
         Vector3 startVelocity = direction * muzzleSpeed * Mathf.Cos(angle);
         startVelocity.y = muzzleSpeed * Mathf.Sin(angle);
 

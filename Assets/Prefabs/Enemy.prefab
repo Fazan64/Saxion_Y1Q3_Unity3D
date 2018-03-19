@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114573842272620940}
   - component: {fileID: 114232809870884840}
   - component: {fileID: 114145043300378452}
+  - component: {fileID: 54388844517769870}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -87,6 +88,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1357445423822242}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54388844517769870
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1357445423822242}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &114145043300378452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -100,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1553683705690344, guid: 9ce9ff4a073494126b9d0c5370936521,
     type: 2}
-  muzzleSpeed: 50
+  muzzleSpeed: 20
 --- !u!114 &114232809870884840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,8 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8276987219bc849ec9d70dbbc455b909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startShootDistance: 10
-  endShootDistance: 15
+  startShootDistance: 500
+  endShootDistance: 500
   aimingTime: 1
 --- !u!114 &114573842272620940
 MonoBehaviour:
@@ -127,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 10
-  destroyOnDeath: 1
+  destroyOnDeath: 0
   canBeReduced: 1
 --- !u!136 &136027682978217370
 CapsuleCollider:

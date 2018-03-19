@@ -152,16 +152,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114305503479627358, guid: b94734a7762ae49c2b1d31f0d94d6e04,
-        type: 2}
-      propertyPath: powerDraw
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 114305503479627358, guid: b94734a7762ae49c2b1d31f0d94d6e04,
-        type: 2}
-      propertyPath: recoveryRate
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b94734a7762ae49c2b1d31f0d94d6e04, type: 2}
   m_IsPrefabParent: 0
@@ -6007,7 +5997,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh14700
+  m_Name: pb_Mesh14712
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -6888,7 +6878,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh14764
+  m_Name: pb_Mesh14734
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
