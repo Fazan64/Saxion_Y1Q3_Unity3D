@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 81669194872551430}
   - component: {fileID: 124447382513367070}
   m_Layer: 8
-  m_Name: FirstPersonCharacter
+  m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
