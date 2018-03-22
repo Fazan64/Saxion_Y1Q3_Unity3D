@@ -6,20 +6,18 @@ using UnityEngine.AI;
 
 public class Projectile : MonoBehaviour {
 
-    public int damage = 1;
     public float bounceBackSpeedMultiplier = 3f;
-    public float explosionRadius = 1f;
+    public GameObject explosionPrefab;
 
     Vector3 startPosition;
 
     void Start() {
-
         startPosition = transform.position;
     }
 
     void OnCollisionEnter(Collision collision) {
 
-        if (collision.collider.gameObject.CompareTag("DeflectProjectiles")) {
+        if (ShouldBounceBack(collision)) {
 
             BounceToStartingPosition(
                 startingSpeed: collision.relativeVelocity.magnitude * bounceBackSpeedMultiplier
@@ -27,40 +25,13 @@ public class Projectile : MonoBehaviour {
             return;
         }
 
-        PlayExplosionEffect();
+        CreateExplosion();
         Destroy(gameObject);
+    }
 
-        /*
-        var health = collision.gameObject.GetComponent<Health>();
-        if (health == null) return;
-        health.health -= damage;
-        if (health.health <= 0) {
-            
-            //Push(collision);
-            Destroy(collision.gameObject, 5f);
-        }*/
+    private bool ShouldBounceBack(Collision collision) {
 
-        // damage all in radius
-        // switch to death
-        // apply forces to all in radius
-
-        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
-
-        foreach (Collider otherCollider in colliders) {
-
-            GameObject go = otherCollider.gameObject;
-
-            var health = go.GetComponent<Health>();
-            if (health == null) continue;
-            health.health -= damage;
-
-            if (health.health <= 0) {
-
-                SwitchToDead(go);
-                ApplyExplosiveForce(go);
-                Destroy(go, 5f);
-            }
-        }
+        return collision.collider.gameObject.CompareTag("DeflectProjectiles");
     }
 
     private void BounceToStartingPosition(float startingSpeed) {
@@ -78,32 +49,12 @@ public class Projectile : MonoBehaviour {
         }
     }
 
-    private void PlayExplosionEffect() {
+    private void CreateExplosion() {
+
+        if (explosionPrefab == null) return;
+
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
         Debug.Log("Explosion goes here.");
-    }
-
-    private void SwitchToDead(GameObject go) {
-
-        var characterController = go.GetComponent<CharacterController>();
-        if (characterController != null) characterController.enabled = false;
-
-        var navMeshAgent = go.GetComponent<NavMeshAgent>();
-        if (navMeshAgent != null) navMeshAgent.enabled = false;
-
-        var ai = go.GetComponent<EnemyAI>();
-        if (ai != null) ai.enabled = false;
-    }
-
-    private void ApplyExplosiveForce(GameObject go) {
-
-        var rb = go.GetComponent<Rigidbody>();
-        if (rb != null) {
-
-            rb.isKinematic = false;
-
-            Vector3 delta = rb.position - transform.position;
-            rb.AddExplosionForce(2000f, transform.position, 2f, 0.5f);
-        }
     }
 }

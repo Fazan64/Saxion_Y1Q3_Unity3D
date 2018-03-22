@@ -20,13 +20,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4773865237982996}
   - component: {fileID: 33117501450291236}
-  - component: {fileID: 136027682978217370}
   - component: {fileID: 23989449319494752}
+  - component: {fileID: 136027682978217370}
+  - component: {fileID: 54388844517769870}
   - component: {fileID: 195211203877563200}
   - component: {fileID: 114573842272620940}
   - component: {fileID: 114232809870884840}
   - component: {fileID: 114145043300378452}
-  - component: {fileID: 54388844517769870}
+  - component: {fileID: 114099454898324644}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -103,6 +104,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114099454898324644
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1357445423822242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d390190dc07c49309cf259e9a0d9fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114145043300378452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -145,6 +157,27 @@ MonoBehaviour:
   _health: 10
   destroyOnDeath: 0
   canBeReduced: 1
+  OnDeathUnityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 195211203877563200}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnHealthChangedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Health+OnHealthChangedEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!136 &136027682978217370
 CapsuleCollider:
   m_ObjectHideFlags: 1

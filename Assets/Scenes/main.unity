@@ -152,6 +152,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4423543281572270, guid: b94734a7762ae49c2b1d31f0d94d6e04, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423543281572270, guid: b94734a7762ae49c2b1d31f0d94d6e04, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423543281572270, guid: b94734a7762ae49c2b1d31f0d94d6e04, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423543281572270, guid: b94734a7762ae49c2b1d31f0d94d6e04, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.79999995
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b94734a7762ae49c2b1d31f0d94d6e04, type: 2}
   m_IsPrefabParent: 0
@@ -162,6 +178,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114573842272620940, guid: 5e8a73e784b5b413e951138c3769aad2,
+        type: 2}
+      propertyPath: OnDeathUnityEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4773865237982996, guid: 5e8a73e784b5b413e951138c3769aad2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -194,6 +215,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114573842272620940, guid: 5e8a73e784b5b413e951138c3769aad2,
+        type: 2}
+      propertyPath: OnDeathUnityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1704516562}
+    - target: {fileID: 114573842272620940, guid: 5e8a73e784b5b413e951138c3769aad2,
+        type: 2}
+      propertyPath: OnDeathUnityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114573842272620940, guid: 5e8a73e784b5b413e951138c3769aad2,
+        type: 2}
+      propertyPath: OnDeathUnityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e8a73e784b5b413e951138c3769aad2, type: 2}
   m_IsPrefabParent: 0
@@ -202,7 +238,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh14698
+  m_Name: pb_Mesh17058
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -5867,7 +5903,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1601167813047910, guid: b94734a7762ae49c2b1d31f0d94d6e04,
     type: 2}
   m_PrefabInternal: {fileID: 37904493}
---- !u!114 &957901546
+--- !u!114 &957901550
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -5884,7 +5920,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh14684
+  m_Name: pb_Mesh17044
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -6014,7 +6050,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh14712
+  m_Name: pb_Mesh17072
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -6139,6 +6175,11 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
+--- !u!1 &1704516562 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1357445423822242, guid: 5e8a73e784b5b413e951138c3769aad2,
+    type: 2}
+  m_PrefabInternal: {fileID: 135673964}
 --- !u!1 &1738354330
 GameObject:
   m_ObjectHideFlags: 0
@@ -6895,7 +6936,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh14734
+  m_Name: pb_Mesh17166
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2

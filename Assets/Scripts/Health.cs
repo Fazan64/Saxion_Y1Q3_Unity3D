@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour {
 
@@ -13,6 +14,12 @@ public class Health : MonoBehaviour {
     [SerializeField] [Range(0, 100)] int _health = 1;
     [SerializeField] bool destroyOnDeath = true;
     [SerializeField] bool canBeReduced   = true;
+
+    [SerializeField] UnityEvent OnDeathUnityEvent = new UnityEvent();
+
+    [System.Serializable]
+    public class OnHealthChangedEvent : UnityEvent<int, int> {}
+    [SerializeField] OnHealthChangedEvent OnHealthChangedUnityEvent = new OnHealthChangedEvent();
 
     public int health {
         get {
@@ -34,15 +41,24 @@ public class Health : MonoBehaviour {
         if (OnHealthChanged != null) {
             OnHealthChanged.Invoke(this, oldValue, newHealth);
         }
+        OnHealthChangedUnityEvent.Invoke(oldValue, newHealth);
 
         if (_health <= 0) {
 
             if (OnDeath != null) {
                 OnDeath.Invoke(this);
             }
+
+            OnDeathUnityEvent.Invoke();
             if (destroyOnDeath) Destroy(gameObject);
         }
 
+        return this;
+    }
+
+    public Health DealDamage(int damage) {
+
+        SetHealth(health - damage);
         return this;
     }
 
