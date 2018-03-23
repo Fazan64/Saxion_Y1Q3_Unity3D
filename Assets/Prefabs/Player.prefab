@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 114499012602981378}
   - component: {fileID: 114989152791199634}
   - component: {fileID: 114305503479627358}
+  - component: {fileID: 114048021647343008}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -494,6 +495,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114048021647343008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1464375293215242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55353ad201be6460289ea72d15e51d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114305503479627358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -627,7 +639,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 100
   destroyOnDeath: 0
-  canBeReduced: 0
+  canBeReduced: 1
   OnDeathUnityEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -663,9 +675,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzleSpeed: 100
   numSecondsTillFullWeaponCharge: 2
+  gunOffset: {x: 0, y: 0, z: -0.5}
   bulletPrefab: {fileID: 1553683705690344, guid: 9ce9ff4a073494126b9d0c5370936521,
     type: 2}
   barrelEnd: {fileID: 4999013659595812}
+  gun: {fileID: 4737132672962148}
   shield: {fileID: 114305503479627358}
   muzzleSpeedModifier:
     serializedVersion: 2
@@ -673,8 +687,8 @@ MonoBehaviour:
     - serializedVersion: 2
       time: 0
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.9581532
+      outSlope: -0.9581532
       tangentMode: 0
     - serializedVersion: 2
       time: 1
@@ -690,7 +704,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 1
+      value: 0.2
       inSlope: 0
       outSlope: 0
       tangentMode: 0
