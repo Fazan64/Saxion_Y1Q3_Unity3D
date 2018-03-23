@@ -9,9 +9,11 @@ public class PlayerController : MonoBehaviour {
 
     public float muzzleSpeed = 100f;
     public float numSecondsTillFullWeaponCharge = 2f;
+    public Vector3 gunOffset = Vector3.back * 0.5f;
     public GameObject bulletPrefab;
 
     [SerializeField] Transform barrelEnd;
+    [SerializeField] Transform gun;
     [SerializeField] Shield shield;
 
     [SerializeField] AnimationCurve muzzleSpeedModifier;
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour {
 
     private float weaponChargeup;
     private bool isChargingUp;
+    private Vector3 defaultGunLocalPosition;
 
     private float weaponChargeupPerSecond {
         get {
@@ -32,6 +35,9 @@ public class PlayerController : MonoBehaviour {
         Debug.Assert(barrelEnd != null);
         Debug.Assert(bulletPrefab != null);
         Debug.Assert(shield != null);
+        Debug.Assert(gun != null);
+
+        defaultGunLocalPosition = gun.localPosition;
     }
 
     // Update is called once per frame
@@ -68,6 +74,10 @@ public class PlayerController : MonoBehaviour {
             isChargingUp = false;
             weaponChargeup = 0f;
         }
+
+        Vector3 targetGunLocalPosition = defaultGunLocalPosition + gunOffset * weaponChargeup;
+        targetGunLocalPosition += UnityEngine.Random.onUnitSphere * 0.02f * weaponChargeup;
+        gun.localPosition = Vector3.MoveTowards(gun.localPosition, targetGunLocalPosition, 2f * Time.deltaTime);
     }
 
     private bool ShieldButtonPressed() {
@@ -89,9 +99,11 @@ public class PlayerController : MonoBehaviour {
         Debug.Assert(rb != null);
 
         float speedModifier = muzzleSpeedModifier.Evaluate(weaponChargeup);
-        rb.AddRelativeForce(
-            Vector3.forward * muzzleSpeed * speedModifier,
+        Vector3 ownVelocity = GetComponent<CharacterController>().velocity;
+
+        rb.AddForce(
+            rb.transform.forward * muzzleSpeed * speedModifier + ownVelocity,
             ForceMode.VelocityChange
-        ); 
+        );
     }
 }

@@ -177,6 +177,11 @@ Prefab:
       propertyPath: muzzleSpeedModifier.m_Curve.Array.data[0].outSlope
       value: -0.9581532
       objectReference: {fileID: 0}
+    - target: {fileID: 114989152791199634, guid: b94734a7762ae49c2b1d31f0d94d6e04,
+        type: 2}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 1778533504}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b94734a7762ae49c2b1d31f0d94d6e04, type: 2}
   m_IsPrefabParent: 0
@@ -6205,6 +6210,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1778533504 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4737132672962148, guid: b94734a7762ae49c2b1d31f0d94d6e04,
+    type: 2}
+  m_PrefabInternal: {fileID: 37904493}
 --- !u!1 &1817390545
 GameObject:
   m_ObjectHideFlags: 0
