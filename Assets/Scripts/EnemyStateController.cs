@@ -6,13 +6,15 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Health))]
 public class EnemyStateController : MonoBehaviour {
 
+    Health health;
+
 	// Use this for initialization
 	void Start () {
         
-        var health = GetComponent<Health>();
+        health = GetComponent<Health>();
         health.OnDeath += (sender) => SwitchToDead();
 	}
-	
+
     private void SwitchToDead() {
 
         var characterController = GetComponent<CharacterController>();

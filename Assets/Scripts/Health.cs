@@ -22,13 +22,12 @@ public class Health : MonoBehaviour {
     [SerializeField] OnHealthChangedEvent OnHealthChangedUnityEvent = new OnHealthChangedEvent();
 
     public int health {
-        get {
-            return _health;
-        }
-        set {
-            SetHealth(value);
-        }
+        get {return _health;}
+        set {SetHealth(value);}
     }
+
+    public bool isAlive { get { return health > 0; }}
+    public bool isDead  { get { return health <= 0;}}
 
     public Health SetHealth(int newHealth) {
 

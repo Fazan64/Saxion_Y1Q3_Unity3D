@@ -9,10 +9,24 @@ public class Projectile : MonoBehaviour {
     public float bounceBackSpeedMultiplier = 3f;
     public GameObject explosionPrefab;
 
+    public int impactDamage = 10;
+    public float explosionModifier = 1f;
+
     Vector3 startPosition;
 
     void Start() {
+        
         startPosition = transform.position;
+    }
+
+    public void Shoot(Vector3 velocity) {
+
+        var rb = GetComponentInChildren<Rigidbody>();
+        Debug.Assert(rb != null);
+        rb.AddForce(
+            velocity,
+            ForceMode.VelocityChange
+        ); 
     }
 
     void OnCollisionEnter(Collision collision) {
@@ -25,8 +39,27 @@ public class Projectile : MonoBehaviour {
             return;
         }
 
-        CreateExplosion();
+        DealDamage(collision);
+        if (explosionModifier >= 0.3f) CreateExplosion();
         Destroy(gameObject);
+    }
+
+    private void DealDamage(Collision collision) {
+        
+        var health = collision.gameObject.GetComponent<Health>();
+        if (health == null) return;
+
+        bool wasAlive = health.isAlive;
+        health.DealDamage(impactDamage);
+        bool didDie = wasAlive && health.isDead;
+
+        if (didDie) {
+
+            var rb = collision.gameObject.GetComponent<Rigidbody>();
+            if (rb != null) {
+                rb.AddForce(-collision.impulse, ForceMode.Impulse);
+            }
+        }
     }
 
     private bool ShouldBounceBack(Collision collision) {
@@ -52,9 +85,10 @@ public class Projectile : MonoBehaviour {
     private void CreateExplosion() {
 
         if (explosionPrefab == null) return;
+        GameObject explosion = Instantiate(
+            explosionPrefab, transform.position, Quaternion.identity
+        );
 
-        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-
-        Debug.Log("Explosion goes here.");
+        explosion.GetComponent<Explosion>().modifier = explosionModifier;
     }
 }

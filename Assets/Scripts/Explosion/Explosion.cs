@@ -7,9 +7,11 @@ public class Explosion : MonoBehaviour {
 
     public int damage = 1;
 
-    public float explosionForce  = 100f;
-    public float radius = 2f;
+    public float explosionForce  = 2000f;
+    public float radius = 4f;
     public float upwardsModifier = 0.5f;
+
+    public float modifier = 1f;
 
     private IEnumerator Start() {
 
@@ -35,10 +37,10 @@ public class Explosion : MonoBehaviour {
             if (health != null) health.DealDamage(damage);
 
             rb.AddExplosionForce(
-                explosionForce, 
+                explosionForce * modifier, 
                 transform.position, 
-                radius,
-                upwardsModifier
+                radius * modifier,
+                upwardsModifier * modifier
             );
         }
     }
