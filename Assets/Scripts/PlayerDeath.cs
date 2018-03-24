@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Health))]
 public class PlayerDeath : MonoBehaviour {
 
+    public float timeTillRestart = 2f;
+
     void Start() {
 
         var health = GetComponent<Health>();
@@ -23,11 +25,12 @@ public class PlayerDeath : MonoBehaviour {
         var rb = GetComponent<Rigidbody>();
         if (rb != null) rb.isKinematic = false;
 
-        Invoke("Restart", 5f);
+        Invoke("Restart", timeTillRestart);
     }
 
     private void Restart() {
 
+        DG.Tweening.DOTween.Clear(destroy: true);
         SceneManager.LoadScene("main");
     }
 }
