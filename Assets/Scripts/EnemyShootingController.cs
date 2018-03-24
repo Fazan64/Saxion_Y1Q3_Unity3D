@@ -3,10 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class EnemyShootingController : MonoBehaviour {
 
     public GameObject bulletPrefab;
     public float muzzleSpeed = 100f;
+    public AudioClip shootSound;
+
+    AudioSource audioSource;
+
+    void Start() {
+
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public bool CanShootAt(GameObject target) {
 
@@ -64,5 +73,9 @@ public class EnemyShootingController : MonoBehaviour {
         Instantiate(bulletPrefab, position, Quaternion.identity)
             .GetComponent<Rigidbody>()
             .AddForce(startVelocity, ForceMode.VelocityChange);
+
+        if (shootSound != null) {
+            audioSource.PlayOneShot(shootSound);
+        }
     }
 }

@@ -163,11 +163,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114573842272620940, guid: 5e8a73e784b5b413e951138c3769aad2,
-        type: 2}
-      propertyPath: OnDeathUnityEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4773865237982996, guid: 5e8a73e784b5b413e951138c3769aad2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -200,20 +195,30 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114573842272620940, guid: 5e8a73e784b5b413e951138c3769aad2,
+    - target: {fileID: 114145043300378452, guid: 5e8a73e784b5b413e951138c3769aad2,
         type: 2}
-      propertyPath: OnDeathUnityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: shootSound
       value: 
-      objectReference: {fileID: 1704516562}
-    - target: {fileID: 114573842272620940, guid: 5e8a73e784b5b413e951138c3769aad2,
+      objectReference: {fileID: 8300000, guid: a2accc2d624941544890420415870191, type: 3}
+    - target: {fileID: 82697645176127740, guid: 5e8a73e784b5b413e951138c3769aad2,
         type: 2}
-      propertyPath: OnDeathUnityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114573842272620940, guid: 5e8a73e784b5b413e951138c3769aad2,
+    - target: {fileID: 82697645176127740, guid: 5e8a73e784b5b413e951138c3769aad2,
         type: 2}
-      propertyPath: OnDeathUnityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82697645176127740, guid: 5e8a73e784b5b413e951138c3769aad2,
+        type: 2}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82697645176127740, guid: 5e8a73e784b5b413e951138c3769aad2,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e8a73e784b5b413e951138c3769aad2, type: 2}
@@ -6436,11 +6441,6 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
---- !u!1 &1704516562 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1357445423822242, guid: 5e8a73e784b5b413e951138c3769aad2,
-    type: 2}
-  m_PrefabInternal: {fileID: 135673964}
 --- !u!1 &1738354330
 GameObject:
   m_ObjectHideFlags: 0
