@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 public class PlayerDeath : MonoBehaviour {
 
     public float timeTillRestart = 2f;
+    public float timeScaleMultiplier = 0.4f;
+
+    private float originalTimeScale;
+    private float originalFixedDeltaTime;
 
     void Start() {
 
@@ -25,12 +29,20 @@ public class PlayerDeath : MonoBehaviour {
         var rb = GetComponent<Rigidbody>();
         if (rb != null) rb.isKinematic = false;
 
+        originalTimeScale      = Time.timeScale;
+        originalFixedDeltaTime = Time.fixedDeltaTime;
+
+        Time.timeScale      *= timeScaleMultiplier;
+        Time.fixedDeltaTime *= timeScaleMultiplier;
         Invoke("Restart", timeTillRestart);
     }
 
     private void Restart() {
 
+        Time.timeScale      = originalTimeScale;
+        Time.fixedDeltaTime = originalFixedDeltaTime;
         DG.Tweening.DOTween.Clear(destroy: true);
-        SceneManager.LoadScene("main");
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
