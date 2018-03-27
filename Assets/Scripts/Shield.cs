@@ -12,12 +12,16 @@ public class Shield : MonoBehaviour {
     [SerializeField] new Collider collider;
     [SerializeField] new Renderer renderer;
 
+    Health health;
+
     public bool isOn { get; private set; }
 
     private void Awake() {
 
         collider = collider ?? GetComponentInChildren<Collider>();
         renderer = renderer ?? GetComponentInChildren<Renderer>();
+
+        health = GetComponent<Health>();
 
         TurnOff();
     }
@@ -59,11 +63,13 @@ public class Shield : MonoBehaviour {
 
         collider.enabled = true;
         isOn = true;
+        health.SetCanBeReduced(false);
     }
 
     public void TurnOff() {
 
         collider.enabled = false;
         isOn = false;
+        health.SetCanBeReduced(true);
     }
 }

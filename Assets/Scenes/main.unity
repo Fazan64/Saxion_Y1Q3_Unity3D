@@ -158,8 +158,14 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 136591689821286406, guid: b94734a7762ae49c2b1d31f0d94d6e04,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 81751418884810204, guid: b94734a7762ae49c2b1d31f0d94d6e04, type: 2}
+    - {fileID: 136591689821286406, guid: b94734a7762ae49c2b1d31f0d94d6e04, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b94734a7762ae49c2b1d31f0d94d6e04, type: 2}
   m_IsPrefabParent: 0
 --- !u!20 &37904494 stripped
@@ -6541,7 +6547,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh16194
+  m_Name: pb_Mesh16200
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
