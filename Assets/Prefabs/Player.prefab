@@ -35,7 +35,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4295459314999472}
   - component: {fileID: 33424507427206276}
-  - component: {fileID: 136591689821286406}
   - component: {fileID: 23637169396836838}
   m_Layer: 8
   m_Name: Cylinder
@@ -148,7 +147,6 @@ GameObject:
   - component: {fileID: 4206930928126170}
   - component: {fileID: 20515067637548978}
   - component: {fileID: 124970474773891416}
-  - component: {fileID: 81751418884810204}
   m_Layer: 8
   m_Name: CameraHUD
   m_TagString: Untagged
@@ -483,13 +481,6 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1601167813047910}
-  m_Enabled: 1
---- !u!81 &81751418884810204
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1788658331739794}
   m_Enabled: 1
 --- !u!82 &82695872796689190
 AudioSource:
@@ -832,19 +823,6 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &136591689821286406
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1172264969679126}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136929220317779028
 CapsuleCollider:
