@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#pragma warning disable CS0649
+
 public class Spawner : MonoBehaviour {
+    
+    [SerializeField] GameObject spawnPrefab;
 
-    public GameObject spawnPrefab;
+    public bool autoSpawn;
+    [SerializeField][Range(0f, 20f)] float spawnCooldown = 5f;
 
-    [Range(0f, 20f)] public float spawnCooldown = 5f;
+    public int numSpawned { get; private set; }
+
     float timeTillCanSpawn;
 
     void Start() {
@@ -15,6 +21,8 @@ public class Spawner : MonoBehaviour {
     }
 
     void FixedUpdate() {
+
+        if (!autoSpawn) return;
 
         if (timeTillCanSpawn > 0f) {
             timeTillCanSpawn -= Time.fixedDeltaTime;
@@ -25,9 +33,11 @@ public class Spawner : MonoBehaviour {
         }
     }
 
-    private void Spawn() {
+    public void Spawn() {
 
         Instantiate(spawnPrefab, transform.position, transform.rotation);
         timeTillCanSpawn = spawnCooldown;
+
+        numSpawned += 1;
     }
 }

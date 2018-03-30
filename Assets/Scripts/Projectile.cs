@@ -4,12 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+#pragma warning disable CS0649
+
 public class Projectile : MonoBehaviour {
 
-    public float bounceBackSpeedMultiplier = 3f;
-    public GameObject explosionPrefab;
+    [SerializeField] float bounceBackSpeedMultiplier = 3f;
 
-    public int impactDamage = 10;
+    [SerializeField] bool createExplosion = true;
+    [SerializeField] GameObject explosionPrefab;
+
+    [SerializeField] int impactDamage = 10;
     public float explosionModifier = 1f;
 
     Vector3 startPosition;
@@ -40,7 +44,7 @@ public class Projectile : MonoBehaviour {
         }
 
         DealDamage(collision);
-        if (explosionModifier >= 0.3f) CreateExplosion();
+        if (createExplosion && explosionModifier >= 0.3f) CreateExplosion();
         Destroy(gameObject);
     }
 
@@ -85,6 +89,7 @@ public class Projectile : MonoBehaviour {
     private void CreateExplosion() {
 
         if (explosionPrefab == null) return;
+
         GameObject explosion = Instantiate(
             explosionPrefab, transform.position, Quaternion.identity
         );

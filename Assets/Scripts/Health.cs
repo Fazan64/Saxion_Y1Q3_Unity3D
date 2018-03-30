@@ -61,6 +61,12 @@ public class Health : MonoBehaviour {
         return this;
     }
 
+    public Health Increase(int increment) {
+
+        SetHealth(health + increment);
+        return this;
+    }
+
     public Health SetDestroyOnDeath(bool newDestroyOnDeath) {
 
         destroyOnDeath = newDestroyOnDeath;
