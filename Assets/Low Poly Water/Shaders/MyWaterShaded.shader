@@ -57,12 +57,13 @@ CGINCLUDE
 	struct v2f
 	{
 		float4 pos : SV_POSITION;
+        float3 normalDir : NORMAL;
+
 		float4 bumpCoords : TEXCOORD0;
 		float4 screenPos : TEXCOORD1;
 		float4 posWorld : TEXCOORD2;
-        float3 normalDir : TEXCOORD3;
 
-		UNITY_FOG_COORDS(4)
+		UNITY_FOG_COORDS(3)
 	}; 
  
 	inline half4 Foam(sampler2D shoreTex, half4 coords) 
@@ -187,8 +188,6 @@ Subshader
 	Pass {
 			Blend SrcAlpha OneMinusSrcAlpha
 			ZTest LEqual
-			ZWrite Off
-			Cull Off
 		
 			CGPROGRAM
 		
