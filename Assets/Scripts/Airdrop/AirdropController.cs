@@ -17,6 +17,19 @@ public class AirdropController : MonoBehaviour {
     void Start() {
 
         InitiateAirdrop();
+
+        StartCoroutine(AirdropLoop());
+    }
+
+    IEnumerator AirdropLoop() {
+
+        while (true) {
+
+            if (!CanAirdrop()) yield return new WaitUntil(CanAirdrop);
+            InitiateAirdrop();
+
+            yield return new WaitForSeconds(airdropInterval);
+        }
     }
 
     private void InitiateAirdrop() {
@@ -26,12 +39,18 @@ public class AirdropController : MonoBehaviour {
         Vector3 startPosition = airdropTarget.position + Vector3.up * airdropHeight;
         Airdrop drop = Instantiate(airdropPrefab, startPosition, Quaternion.identity);
 
-        Invoke("InitiateAirdrop", airdropInterval);
+        numActiveAirdrops += 1;
+        drop.OnDestroyed += (sender) => numActiveAirdrops -= 1;
     }
 
     private Transform GetNextAirdropTarget() {
 
         int index = UnityEngine.Random.Range(0, airdropTargets.Length);
         return airdropTargets[index];
+    }
+
+    private bool CanAirdrop() {
+
+        return numActiveAirdrops <= 0;
     }
 }

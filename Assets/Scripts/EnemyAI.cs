@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(Health), typeof(NavMeshAgent), typeof(EnemyShootingController))]
+[RequireComponent(typeof(Health), typeof(NavMeshAgent), typeof(ShootingController))]
 public class EnemyAI : MonoBehaviour {
     
     public float startShootDistance = 10f;
@@ -15,7 +15,7 @@ public class EnemyAI : MonoBehaviour {
 
     Health health;
     NavMeshAgent agent;
-    EnemyShootingController shooter;
+    ShootingController shooter;
 
     FiniteStateMachine finiteStateMachine;
 
@@ -26,7 +26,7 @@ public class EnemyAI : MonoBehaviour {
 
         health = GetComponent<Health>();
         agent = GetComponent<NavMeshAgent>();
-        shooter = GetComponent<EnemyShootingController>();
+        shooter = GetComponent<ShootingController>();
         material = GetComponent<Renderer>().material;
 
         player = GameObject.FindWithTag("Player");

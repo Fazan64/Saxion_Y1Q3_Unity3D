@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ using UnityEngine;
 
 public class Airdrop : MonoBehaviour {
 
+    public event Action<Airdrop> OnDestroyed;
+    
     [SerializeField] ParticleSystem smoke;
 
     bool didLand;
@@ -16,5 +19,12 @@ public class Airdrop : MonoBehaviour {
         didLand = true;
 
         smoke.Play();
+    }
+
+    void OnDestroy() {
+
+        if (OnDestroyed != null) {
+            OnDestroyed(this);
+        }
     }
 }
