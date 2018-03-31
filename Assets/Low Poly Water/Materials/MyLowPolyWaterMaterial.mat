@@ -167,7 +167,7 @@ Material:
     - _WaveCapsAmount: 0.18275861
     - _WaveFoamDistort: 0.27931035
     - _WaveFrequency: 0.5
-    - _WaveHeight: 1
+    - _WaveHeight: 0.5
     - _WaveLength: 0.7
     - _WaveScale: 0.046289656
     - _WaveSpeed: 1
