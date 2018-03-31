@@ -63,7 +63,7 @@ namespace LowPolyWater
         
         void Update()
         {
-            //GenerateWaves();
+            GenerateWaves();
         }
 
         /// <summary>
