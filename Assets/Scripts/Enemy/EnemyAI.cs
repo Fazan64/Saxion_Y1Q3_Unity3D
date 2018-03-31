@@ -25,8 +25,8 @@ public class EnemyAI : MonoBehaviour {
     void Start() {
 
         health = GetComponent<Health>();
-        agent = GetComponent<NavMeshAgent>();
-        shooter = GetComponent<ShootingController>();
+        agent  = GetComponent<NavMeshAgent>();
+        shooter  = GetComponent<ShootingController>();
         material = GetComponent<Renderer>().material;
 
         player = GameObject.FindWithTag("Player");

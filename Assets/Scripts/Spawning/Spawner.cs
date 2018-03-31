@@ -5,14 +5,15 @@ using UnityEngine;
 #pragma warning disable CS0649
 
 public class Spawner : MonoBehaviour {
-    
-    [SerializeField] GameObject spawnPrefab;
 
-    public bool autoSpawn;
-    [SerializeField][Range(0f, 20f)] float spawnCooldown = 5f;
+    [SerializeField] bool autoSpawn;
+    [SerializeField][Range(0f, 5f)] float spawnCooldown = 0.1f;
+
+    [SerializeField] GameObject spawnPrefab;
 
     public int numSpawned { get; private set; }
 
+    int numLeftToSpawn;
     float timeTillCanSpawn;
 
     void Start() {
@@ -22,22 +23,30 @@ public class Spawner : MonoBehaviour {
 
     void FixedUpdate() {
 
-        if (!autoSpawn) return;
-
         if (timeTillCanSpawn > 0f) {
             timeTillCanSpawn -= Time.fixedDeltaTime;
         }
 
-        if (timeTillCanSpawn <= 0f) {
-            Spawn();
+        if (autoSpawn || numLeftToSpawn > 0) {
+
+            if (timeTillCanSpawn <= 0f) {
+
+                numLeftToSpawn -= 1;
+                SpawnImmediate();
+            }
         }
     }
 
     public void Spawn() {
 
-        Instantiate(spawnPrefab, transform.position, transform.rotation);
-        timeTillCanSpawn = spawnCooldown;
+        numLeftToSpawn += 1;
+    }
 
+    public void SpawnImmediate() {
+
+        Instantiate(spawnPrefab, transform.position + Vector3.up * 50f, transform.rotation);
+
+        timeTillCanSpawn += spawnCooldown;
         numSpawned += 1;
     }
 }

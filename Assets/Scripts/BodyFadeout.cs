@@ -4,40 +4,59 @@ using UnityEngine;
 
 public class BodyFadeout : MonoBehaviour {
 
-    [SerializeField] float fadeoutTime = 1f;
+    [SerializeField] float fadeoutDelay = 0f;
+    [SerializeField] float fadeoutTime  = 1f;
 
     new Renderer renderer;
     float initialAlpha;
-    float timeSinceActivation;
+
+    bool isFadingOut;
+    float timeSinceStartedFadeout;
 
     void Awake() {
 
-        renderer = GetComponent<Renderer>();
+        renderer = GetComponentInChildren<Renderer>();
         Debug.Assert(renderer != null);
     }
 
     void OnEnable() {
 
         initialAlpha = renderer.material.color.a;
-        timeSinceActivation = 0f;
+
+        Invoke("StartFadeout", fadeoutDelay);
     }
 
     // Update is called once per frame
     void Update() {
 
-        timeSinceActivation += Time.deltaTime;
+        if (!isFadingOut) return;
+
+        timeSinceStartedFadeout += Time.deltaTime;
 
         Color color = renderer.material.color;
-        color.a = Mathf.Lerp(initialAlpha, 0f, timeSinceActivation / fadeoutTime);
+        color.a = Mathf.Lerp(initialAlpha, 0f, timeSinceStartedFadeout / fadeoutTime);
         renderer.material.color = color;
 
-        if (timeSinceActivation >= 1f) {
+        if (timeSinceStartedFadeout >= 1f) {
             Destroy(gameObject);
         }
     }
 
-    public void SetFadeoutTime(float newValue) {
+    public BodyFadeout SetFadeoutDelay(float newValue) {
+
+        fadeoutDelay = newValue;
+        return this;
+    }
+
+    public BodyFadeout SetFadeoutTime(float newValue) {
 
         fadeoutTime = newValue;
+        return this;
+    }
+
+    private void StartFadeout() {
+
+        isFadingOut = true;
+        timeSinceStartedFadeout = 0f;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,5 +19,12 @@ public class Player : MonoBehaviour {
 
         Debug.Assert(_instance == null);
         _instance = this;
+
+        GlobalEvents.OnEnemyDead.AddListener(OnEnemyDeadHandler);
+    }
+
+    private void OnEnemyDeadHandler(GameObject enemy) {
+
+        score += 100;
     }
 }
