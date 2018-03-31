@@ -8,6 +8,7 @@ public class Spawner : MonoBehaviour {
 
     [SerializeField] bool autoSpawn;
     [SerializeField][Range(0f, 5f)] float spawnCooldown = 0.1f;
+    [SerializeField] float spawnHeight = 50f;
     [SerializeField] float positionRandomizationRadius;
     [SerializeField] float rotationRandomizationAngleDegrees;
 
@@ -47,7 +48,7 @@ public class Spawner : MonoBehaviour {
     public void SpawnImmediate() {
 
         Vector3 position = transform.position;
-        position += Vector3.up * 50f;
+        position += Vector3.up * spawnHeight;
 
         Vector3 offset = Random.insideUnitCircle * positionRandomizationRadius;
         offset.z = offset.y;

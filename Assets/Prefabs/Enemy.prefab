@@ -319,6 +319,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCoeficient: 0.05
   targetRigidbody: {fileID: 54388844517769870}
+  autoDetach: 0
+  autoDetachMinSpeed: 0.1
 --- !u!114 &114135510720764136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -435,7 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8381bfa756e644def862116fb4296b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeoutDelay: 1
+  fadeoutDelay: 0
   fadeoutTime: 1
 --- !u!114 &114949552782654356
 MonoBehaviour:

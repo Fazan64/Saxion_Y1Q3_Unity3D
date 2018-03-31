@@ -8,6 +8,8 @@ public class Parachute : MonoBehaviour {
 
     [SerializeField] float dragCoeficient = 0.05f;
     [SerializeField] Rigidbody targetRigidbody;
+    [SerializeField] bool autoDetach = true;
+    [SerializeField] float autoDetachMinSpeed = 0.1f;
 
     bool isDetached;
 
@@ -20,21 +22,12 @@ public class Parachute : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (isDetached) return;
+        if (!isDetached && targetRigidbody.velocity.magnitude <= autoDetachMinSpeed) {
+            
+            Detach();
+        }
 
-        float verticalSpeed = Vector3.Dot(targetRigidbody.velocity, transform.up);
-        if (verticalSpeed >= 0f) return;
-
-        Vector3 force = transform.up * verticalSpeed * verticalSpeed * dragCoeficient;
-        targetRigidbody.AddForce(force);
-
-        float angle = 0f;
-        Vector3 axis = Vector3.zero;
-        Quaternion
-            .FromToRotation(transform.up, Vector3.up)
-            .ToAngleAxis(out angle, out axis);
-
-        targetRigidbody.AddTorque(axis * angle * 0.01f);
+        ApplyForces();
 	}
 
     public void Detach() {
@@ -53,11 +46,32 @@ public class Parachute : MonoBehaviour {
         isDetached = true;
     }
 
+    private void ApplyForces() {
+        
+        float verticalSpeed = Vector3.Dot(targetRigidbody.velocity, transform.up);
+        if (verticalSpeed < 0f) {
+
+            Vector3 force = transform.up * verticalSpeed * verticalSpeed * dragCoeficient;
+            targetRigidbody.AddForce(force);
+        }
+
+        float angle = 0f;
+        Vector3 axis = Vector3.zero;
+        Quaternion
+            .FromToRotation(transform.up, Vector3.up)
+            .ToAngleAxis(out angle, out axis);
+
+        targetRigidbody.AddTorque(axis * angle * 0.01f);
+    }
+
     private void FlyOff() {
         
         var rb = gameObject.AddComponent<Rigidbody>();
+
         Vector3 direction = (Vector3.up * 4f + Random.onUnitSphere).normalized;
         rb.AddForce(direction * Random.Range(70f, 100f));
         rb.AddTorque(Random.onUnitSphere * 100f);
+
+        targetRigidbody = rb;
     }
 }
