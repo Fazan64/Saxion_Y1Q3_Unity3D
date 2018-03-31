@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 195211203877563200}
   - component: {fileID: 114573842272620940}
   - component: {fileID: 114232809870884840}
-  - component: {fileID: 114099454898324644}
+  - component: {fileID: 114283503906507836}
   - component: {fileID: 114283629507666226}
   m_Layer: 0
   m_Name: Enemy
@@ -63,7 +63,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 5ba46494929ba40278fe4695401ba250, type: 2}
+  - {fileID: 2100000, guid: a1ac5985e56a8466e8ed90003b9983fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -185,17 +185,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114099454898324644
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1357445423822242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d390190dc07c49309cf259e9a0d9fd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114232809870884840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,6 +199,19 @@ MonoBehaviour:
   startShootDistance: 500
   endShootDistance: 500
   aimingTime: 1
+--- !u!114 &114283503906507836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1357445423822242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 202484678064e4a469d73c7bda6c93f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyFadeoutDelay: 0.5
+  bodyFadeoutTime: 1
 --- !u!114 &114283629507666226
 MonoBehaviour:
   m_ObjectHideFlags: 1

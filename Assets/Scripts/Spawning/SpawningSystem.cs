@@ -8,20 +8,45 @@ using UnityEngine;
 
 public class SpawningSystem : MonoBehaviour {
 
-    [SerializeField] float waveInterval;
-    [SerializeField] int numSpawnersPerWave;
+    [SerializeField] float waveInterval = 10f;
+    [SerializeField] float targetNumEnemiesIncreaseInterval = 5f;
+    [SerializeField] int numSpawnersPerWave = 3;
     [SerializeField] Spawner[] spawners;
 
     Transform playerTransform;
     int currentWaveNumber;
 
-    // Start increasingly large waves at increasing intervals 
+    int numActiveEnemies;
+    int numEnemiesPerWave = 3;
 
+    // Start increasingly large waves at increasing intervals 
     void Start() {
 
         playerTransform = FindObjectOfType<PlayerController>().transform;
 
-        Invoke("StartNewWave", waveInterval);
+        GlobalEvents.OnEnemyCreated.AddListener(enemy => numActiveEnemies += 1);
+        GlobalEvents.OnEnemyDead.AddListener(enemy => numActiveEnemies -= 1);
+
+        StartCoroutine(StartWaveLoop());
+        StartCoroutine(TargetNumEnemiesLoop());
+    }
+
+    IEnumerator TargetNumEnemiesLoop() {
+
+        while (true) {
+
+            numEnemiesPerWave += 1;
+            yield return new WaitForSeconds(targetNumEnemiesIncreaseInterval);
+        }
+    }
+
+    IEnumerator StartWaveLoop() {
+
+        while (true) {
+
+            StartNewWave();
+            yield return new WaitForSeconds(waveInterval);
+        }
     }
 
     private void StartNewWave() {
@@ -31,13 +56,22 @@ public class SpawningSystem : MonoBehaviour {
             .Take(numSpawnersPerWave)
             .OrderBy(s => s.numSpawned);
 
-        foreach (Spawner spawner in spawnersToUse) {
-
-            spawner.Spawn();
-        }
-
+        SpawnEnemies(numEnemiesPerWave, spawnersToUse);
         currentWaveNumber += 1;
-        Invoke("StartNewWave", waveInterval);
+    }
+
+    private void SpawnEnemies(int numEnemiesToSpawn, IEnumerable<Spawner> spawnersToUse) {
+
+        while (true) {
+
+            foreach (Spawner spawner in spawnersToUse) {
+
+                if (numEnemiesToSpawn <= 0) return;
+
+                spawner.Spawn();
+                numEnemiesToSpawn -= 1;
+            }
+        }
     }
 
     private float GetDistanceToPlayer(Spawner spawner) {
