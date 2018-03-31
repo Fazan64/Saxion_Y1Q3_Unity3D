@@ -27,6 +27,14 @@ public class Parachute : MonoBehaviour {
 
         Vector3 force = transform.up * verticalSpeed * verticalSpeed * dragCoeficient;
         targetRigidbody.AddForce(force);
+
+        float angle = 0f;
+        Vector3 axis = Vector3.zero;
+        Quaternion
+            .FromToRotation(transform.up, Vector3.up)
+            .ToAngleAxis(out angle, out axis);
+
+        targetRigidbody.AddTorque(axis * angle * 0.01f);
 	}
 
     public void Detach() {
