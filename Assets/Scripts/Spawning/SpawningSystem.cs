@@ -9,8 +9,8 @@ using UnityEngine;
 public class SpawningSystem : MonoBehaviour {
 
     [SerializeField] float waveInterval = 10f;
-    [SerializeField] float targetNumEnemiesIncreaseInterval = 5f;
-    [SerializeField] int numSpawnersPerWave = 3;
+    [SerializeField] int firstWaveSize = 3;
+    [SerializeField] int podSize = 3;
     [SerializeField] Spawner[] spawners;
 
     Transform playerTransform;
@@ -28,16 +28,6 @@ public class SpawningSystem : MonoBehaviour {
         GlobalEvents.OnEnemyDead.AddListener(enemy => numActiveEnemies -= 1);
 
         StartCoroutine(StartWaveLoop());
-        StartCoroutine(TargetNumEnemiesLoop());
-    }
-
-    IEnumerator TargetNumEnemiesLoop() {
-
-        while (true) {
-
-            numEnemiesPerWave += 1;
-            yield return new WaitForSeconds(targetNumEnemiesIncreaseInterval);
-        }
     }
 
     IEnumerator StartWaveLoop() {
@@ -52,24 +42,29 @@ public class SpawningSystem : MonoBehaviour {
     private void StartNewWave() {
 
         IEnumerable<Spawner> spawnersToUse = spawners
-            .OrderBy(GetDistanceToPlayer)
-            .Take(numSpawnersPerWave)
-            .OrderBy(s => s.numSpawned);
+            .OrderBy(GetDistanceToPlayer);
 
+
+        numEnemiesPerWave = (int)(Math.Log(currentWaveNumber + 1, 1.5) + firstWaveSize);
         SpawnEnemies(numEnemiesPerWave, spawnersToUse);
         currentWaveNumber += 1;
     }
 
     private void SpawnEnemies(int numEnemiesToSpawn, IEnumerable<Spawner> spawnersToUse) {
 
+        if (podSize <= 0) return;
+
         while (true) {
 
             foreach (Spawner spawner in spawnersToUse) {
 
-                if (numEnemiesToSpawn <= 0) return;
+                for (int i = 0; i < podSize; ++i) {
 
-                spawner.Spawn();
-                numEnemiesToSpawn -= 1;
+                    if (numEnemiesToSpawn <= 0) return;
+
+                    spawner.Spawn();
+                    numEnemiesToSpawn -= 1;
+                }
             }
         }
     }

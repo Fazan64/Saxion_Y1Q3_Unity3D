@@ -5,9 +5,9 @@ public class Shield : MonoBehaviour {
 
     [SerializeField] float maxEnergy = 100f;
     [SerializeField] float minEnergyToTurnOn = 100f;
-    [SerializeField] float powerDraw = 100f;
-    [SerializeField] float recoveryRate = 100f;
     [SerializeField] float remainingEnergy = 100f;
+    [SerializeField] float useTime = 1f;
+    [SerializeField] float recoveryTime = 1f;
 
     [SerializeField] new Collider collider;
     [SerializeField] new Renderer renderer;
@@ -33,7 +33,7 @@ public class Shield : MonoBehaviour {
 
         if (isOn && remainingEnergy > 0f) {
 
-            remainingEnergy -= powerDraw * Time.fixedDeltaTime;
+            remainingEnergy -= (maxEnergy / useTime) * Time.fixedDeltaTime;
 
             if (remainingEnergy <= 0f) {
                 TurnOff();
@@ -41,7 +41,7 @@ public class Shield : MonoBehaviour {
 
         } else if (remainingEnergy < maxEnergy) {
 
-            remainingEnergy += recoveryRate * Time.fixedDeltaTime;
+            remainingEnergy += (maxEnergy / recoveryTime) * Time.fixedDeltaTime;
 
             if (remainingEnergy >= maxEnergy) {
                 remainingEnergy = maxEnergy;

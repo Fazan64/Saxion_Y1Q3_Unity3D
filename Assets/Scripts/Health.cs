@@ -12,6 +12,7 @@ public class Health : MonoBehaviour {
     public event OnDeathHandler OnDeath;
 
     [SerializeField] [Range(0, 100)] int _health = 1;
+    [SerializeField] [Range(0, 100)] int _maxHealth = 100;
     [SerializeField] bool destroyOnDeath = true;
     [SerializeField] bool canBeReduced   = true;
 
@@ -26,17 +27,31 @@ public class Health : MonoBehaviour {
         set {SetHealth(value);}
     }
 
+    public int maxHealth {
+        get { return _maxHealth;}
+        set {
+            _maxHealth = value;
+            ValidateMaxHealth();
+        }
+    }
+
     public bool isAlive { get { return health > 0; }}
     public bool isDead  { get { return health <= 0;}}
+
+    void OnValidate() {
+
+        ValidateMaxHealth();
+    }
 
     public Health SetHealth(int newHealth) {
 
         if (!canBeReduced && newHealth < _health) return this;
-        if (newHealth < 0) newHealth = 0;
+        newHealth = Mathf.Clamp(newHealth, 0, _maxHealth);
         if (newHealth == _health) return this;
 
         int oldValue = _health;
         _health = newHealth;
+
         if (OnHealthChanged != null) {
             OnHealthChanged.Invoke(this, oldValue, newHealth);
         }
@@ -47,8 +62,8 @@ public class Health : MonoBehaviour {
             if (OnDeath != null) {
                 OnDeath.Invoke(this);
             }
-
             OnDeathUnityEvent.Invoke();
+
             if (destroyOnDeath) Destroy(gameObject);
         }
 
@@ -77,5 +92,13 @@ public class Health : MonoBehaviour {
 
         canBeReduced = newCanBeReduced;
         return this;
+    }
+
+    private void ValidateMaxHealth() {
+
+        if (_health > _maxHealth) {
+
+            SetHealth(_maxHealth);
+        }
     }
 }
