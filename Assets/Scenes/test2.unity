@@ -12898,7 +12898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e2a6f30f4284ba58c7c228e02d268c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startGameImmediately: 1
+  startGameImmediately: 0
 --- !u!1 &1579799365
 GameObject:
   m_ObjectHideFlags: 0
