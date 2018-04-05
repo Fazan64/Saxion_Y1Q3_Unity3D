@@ -86,7 +86,7 @@ Material:
     - _ZWrite: 1
     - _isInnerAlphaBlendOrColor: 0
     m_Colors:
-    - _BaseColor: {r: 0.37208048, g: 0.7794238, b: 0.8161765, a: 1}
+    - _BaseColor: {r: 0.16470589, g: 0.42352945, b: 0.96470594, a: 1}
     - _BaseScale: {r: 1, g: 1, b: 1, a: 0}
     - _BumpDirection: {r: 30, g: 30, b: 30, a: -50}
     - _BumpTiling: {r: 0.01, g: 0.01, b: 0.01, a: 0.01}
