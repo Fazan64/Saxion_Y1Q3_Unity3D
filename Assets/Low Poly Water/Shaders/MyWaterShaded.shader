@@ -66,9 +66,9 @@ CGINCLUDE
 		UNITY_FOG_COORDS(3)
 	}; 
  
-	inline half4 Foam(sampler2D shoreTex, half4 coords) 
+	inline float4 Foam(sampler2D shoreTex, half4 coords) 
 	{
-		half4 foam = (tex2D(shoreTex, coords.xy) * tex2D(shoreTex,coords.zw)) - 0.125;
+		float4 foam = (tex2D(shoreTex, coords.xy) * tex2D(shoreTex,coords.zw)) - 0.125;
 		return foam;
 	}
 
@@ -103,7 +103,7 @@ CGINCLUDE
 		return o;
 	}
  
-	half4 calculateBaseColor(v2f input)  
+	float4 calculateBaseColor(v2f input)  
     {
         float3 normalDirection = normalize(input.normalDir);
 
@@ -145,24 +145,23 @@ CGINCLUDE
            specularReflection = attenuation * _LightColor0.rgb  * _SpecColor.rgb * pow(max(0.0, dot(reflect(-lightDirection, normalDirection), viewDirection)), _Shininess);
         }
 
-        return half4(ambientLighting + diffuseReflection  + specularReflection, 1.0);
+        return float4(ambientLighting + diffuseReflection  + specularReflection, 1.0);
     }
 
 	half4 frag( v2f i ) : SV_Target
 	{
- 
-		half4 edgeBlendFactors = half4(1.0, 0.0, 0.0, 0.0);
+		float4 edgeBlendFactors = float4(1.0, 0.0, 0.0, 0.0);
 		
 		#ifdef WATER_EDGEBLEND_ON
-			half depth = SAMPLE_DEPTH_TEXTURE_PROJ(_CameraDepthTexture, UNITY_PROJ_COORD(i.screenPos));
+			float depth = SAMPLE_DEPTH_TEXTURE_PROJ(_CameraDepthTexture, UNITY_PROJ_COORD(i.screenPos));
 			depth = LinearEyeDepth(depth);
 			edgeBlendFactors = saturate(_InvFadeParemeter * (depth - i.screenPos.w));
 			edgeBlendFactors.y = 1.0 - edgeBlendFactors.y;
 		#endif
 
-        half4 baseColor = calculateBaseColor(i);
+        float4 baseColor = calculateBaseColor(i);
  
-		half4 foam = Foam(_ShoreTex, i.bumpCoords * 2.0);
+		float4 foam = Foam(_ShoreTex, i.bumpCoords * 2.0);
 		baseColor.rgb += foam.rgb * _Foam.x * (edgeBlendFactors.y + saturate(1-_Foam.y));
 
         if(_isInnerAlphaBlendOrColor == 0)
