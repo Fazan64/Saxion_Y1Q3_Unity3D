@@ -9,4 +9,7 @@ public static class GlobalEvents {
 
     public static readonly EnemyEvent OnEnemyDead    = new EnemyEvent();
     public static readonly EnemyEvent OnEnemyCreated = new EnemyEvent();
+
+    public static readonly UnityEvent OnGameStarted = new UnityEvent();
+    public static readonly UnityEvent OnGamePaused  = new UnityEvent();
 }

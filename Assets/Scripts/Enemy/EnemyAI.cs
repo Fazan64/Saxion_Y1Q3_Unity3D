@@ -29,8 +29,8 @@ public class EnemyAI : MonoBehaviour {
         shooter  = GetComponent<ShootingController>();
         material = GetComponent<Renderer>().material;
 
-        player = GameObject.FindWithTag("Player");
-        Debug.Assert(player != null, "Player not found by tag!");
+        player = Player.instance.gameObject;
+        Debug.Assert(player != null, "Player not found!");
 
         finiteStateMachine = new FiniteStateMachine(StateFollowPlayer);
     }
@@ -50,7 +50,7 @@ public class EnemyAI : MonoBehaviour {
         }
 
         material.color = Color.white;
-        agent.isStopped = false;
+        if (agent.isStopped) agent.isStopped = false;
         agent.destination = player.transform.position;
     }
 

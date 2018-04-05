@@ -3,12 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+#pragma warning disable 0649
+
 [RequireComponent(typeof(AudioSource))]
 public class ShootingController : MonoBehaviour {
 
-    public GameObject bulletPrefab;
-    public float muzzleSpeed = 100f;
-    public AudioClip shootSound;
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] float muzzleSpeed = 100f;
+    [SerializeField] AudioClip shootSound;
+
+    [SerializeField] LayerMask obstacleDetectionLayerMask;
 
     AudioSource audioSource;
 
@@ -36,7 +40,7 @@ public class ShootingController : MonoBehaviour {
             direction: delta.normalized,
             hitInfo: out hit,
             maxDistance: delta.magnitude,
-            layerMask: Physics.DefaultRaycastLayers & ~(1 << target.layer)
+            layerMask: obstacleDetectionLayerMask & ~(1 << target.layer)
         );
 
         if (didHit && hit.collider.gameObject != gameObject) return false;

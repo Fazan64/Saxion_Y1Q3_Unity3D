@@ -373,6 +373,9 @@ MonoBehaviour:
     type: 2}
   muzzleSpeed: 20
   shootSound: {fileID: 8300000, guid: 2203773368e4340d98c114f55c2dd7fd, type: 3}
+  obstacleDetectionLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294964697
 --- !u!114 &114573842272620940
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1589,7 +1592,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 7
-  m_Acceleration: 8
+  m_Acceleration: 16
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0

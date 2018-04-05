@@ -20,6 +20,9 @@ public class Player : MonoBehaviour {
         Debug.Assert(_instance == null);
         _instance = this;
 
+        GlobalEvents.OnGameStarted.AddListener(() => gameObject.SetActive(true));
+        GlobalEvents.OnGamePaused.AddListener(() => gameObject.SetActive(false));
+
         GlobalEvents.OnEnemyDead.AddListener(OnEnemyDeadHandler);
     }
 
