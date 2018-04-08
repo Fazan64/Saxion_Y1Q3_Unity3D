@@ -1,26 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 #pragma warning disable 0649
 
 public class MainMenu : MonoBehaviour {
 
-    [SerializeField] bool startGameImmediately;
-
-    void Awake() {
-
-        GlobalEvents.OnGameStarted.AddListener(() => gameObject.SetActive(false));
-    }
-
     void Start() {
 
         Cursor.visible = true;
-        if (startGameImmediately) StartGame();
     }
 
     public void StartGame() {
 
-        GlobalEvents.OnGameStarted.Invoke();
+        GameController.instance.StartGame();
     }
 }

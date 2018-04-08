@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Health))]
 public class PlayerDeath : MonoBehaviour {
@@ -16,6 +15,17 @@ public class PlayerDeath : MonoBehaviour {
 
         var health = GetComponent<Health>();
         health.OnDeath += OnDeathHandler;
+    }
+
+    IEnumerator Restart() {
+
+        yield return new WaitForSeconds(timeTillRestart);
+
+        Time.timeScale = originalTimeScale;
+        Time.fixedDeltaTime = originalFixedDeltaTime;
+        DG.Tweening.DOTween.Clear(destroy: true);
+
+        GameController.instance.RestartGame();
     }
 
     private void OnDeathHandler(Health sender) {
@@ -34,15 +44,6 @@ public class PlayerDeath : MonoBehaviour {
 
         Time.timeScale      *= timeScaleMultiplier;
         Time.fixedDeltaTime *= timeScaleMultiplier;
-        Invoke("Restart", timeTillRestart);
-    }
-
-    private void Restart() {
-
-        Time.timeScale      = originalTimeScale;
-        Time.fixedDeltaTime = originalFixedDeltaTime;
-        DG.Tweening.DOTween.Clear(destroy: true);
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(Restart());
     }
 }

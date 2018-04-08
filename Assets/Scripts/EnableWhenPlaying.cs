@@ -6,7 +6,7 @@ public class EnableWhenPlaying : MonoBehaviour {
 
     void Awake() {
 
-        GlobalEvents.OnGameStarted.AddListener(EnableChildren);
+        GlobalEvents.OnGameStart.AddListener(EnableChildren);
     }
 
     void EnableChildren() {
