@@ -17,15 +17,10 @@ public class PlayerDeath : MonoBehaviour {
         health.OnDeath += OnDeathHandler;
     }
 
-    IEnumerator Restart() {
-
-        yield return new WaitForSeconds(timeTillRestart);
-
+    void OnDestroy() {
+        
         Time.timeScale = originalTimeScale;
         Time.fixedDeltaTime = originalFixedDeltaTime;
-        DG.Tweening.DOTween.Clear(destroy: true);
-
-        GameController.instance.RestartGame();
     }
 
     private void OnDeathHandler(Health sender) {
@@ -44,6 +39,5 @@ public class PlayerDeath : MonoBehaviour {
 
         Time.timeScale      *= timeScaleMultiplier;
         Time.fixedDeltaTime *= timeScaleMultiplier;
-        StartCoroutine(Restart());
     }
 }

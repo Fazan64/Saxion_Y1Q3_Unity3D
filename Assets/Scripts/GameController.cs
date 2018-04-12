@@ -9,15 +9,14 @@ using UnityEngine.SceneManagement;
 public class GameController : Singleton<GameController> {
 
     [SerializeField] bool startGameImmediately;
-    [SerializeField] string mainLevelSceneName = "main";
-    [SerializeField] string mainMenuSceneName = "main menu";
+    [SerializeField] string mainLevelSceneName = "main level";
+    [SerializeField] string mainMenuSceneName  = "main menu";
 
     void Awake() {
 
         if (!startGameImmediately) {
             ShowMainMenu();
-        }
-        else {
+        } else {
             StartGame();
         }
     }
@@ -30,14 +29,19 @@ public class GameController : Singleton<GameController> {
 
     public void StartGame() {
 
-        SceneManager.UnloadSceneAsync(mainMenuSceneName);
-        GlobalEvents.OnGameStart.Invoke();
+        UnloadAllOtherScenes();
+        StartCoroutine(StartGameCoroutine());
     }
 
     public void RestartGame() {
 
-        AsyncOperation result = SceneManager.UnloadSceneAsync(mainLevelSceneName);
-        result.completed += (sender) => StartCoroutine(RestartGameCoroutine());
+        DG.Tweening.DOTween.Clear(destroy: true);
+
+        UnloadAllOtherScenes();
+        StartCoroutine(RestartGameCoroutine());
+
+        //AsyncOperation result = SceneManager.UnloadSceneAsync(mainLevelSceneName);
+        //result.completed += (sender) => StartCoroutine(RestartGameCoroutine());
     }
 
     private void UnloadAllOtherScenes() {
@@ -56,8 +60,14 @@ public class GameController : Singleton<GameController> {
 
     private IEnumerator ShowMainMenuCoroutine() {
 
-        SceneManager.LoadScene(mainLevelSceneName, LoadSceneMode.Additive);
         SceneManager.LoadScene(mainMenuSceneName, LoadSceneMode.Additive);
+        yield return null;
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(mainMenuSceneName));
+    }
+
+    private IEnumerator StartGameCoroutine() {
+        
+        SceneManager.LoadScene(mainLevelSceneName, LoadSceneMode.Additive);
         yield return null;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(mainLevelSceneName));
     }
@@ -67,7 +77,6 @@ public class GameController : Singleton<GameController> {
         SceneManager.LoadScene(mainLevelSceneName, LoadSceneMode.Additive);
         yield return null;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(mainLevelSceneName));
-        GlobalEvents.OnGameStart.Invoke();
         GlobalEvents.OnGameRestart.Invoke();
     }
 }
