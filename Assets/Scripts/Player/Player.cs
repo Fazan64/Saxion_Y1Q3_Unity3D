@@ -13,6 +13,9 @@ public class Player : Singleton<Player> {
     void Awake() {
         
         GlobalEvents.OnEnemyDead.AddListener(OnEnemyDeadHandler);
+        OnDeath += (sender) => {
+            GlobalEvents.OnEnemyDead.RemoveListener(OnEnemyDeadHandler);
+        };
     }
 
     void Start() {
