@@ -14,7 +14,7 @@ public class Health : MonoBehaviour {
     [SerializeField] [Range(0, 100)] int _health = 1;
     [SerializeField] [Range(0, 100)] int _maxHealth = 100;
     [SerializeField] bool destroyOnDeath = true;
-    [SerializeField] bool canBeReduced   = true;
+    [SerializeField] bool _canBeReduced  = true;
 
     [SerializeField] UnityEvent OnDeathUnityEvent = new UnityEvent();
 
@@ -35,6 +35,8 @@ public class Health : MonoBehaviour {
         }
     }
 
+    public bool canBeReduced { get { return _canBeReduced; }}
+
     public bool isAlive { get { return health > 0; }}
     public bool isDead  { get { return health <= 0;}}
 
@@ -45,7 +47,7 @@ public class Health : MonoBehaviour {
 
     public Health SetHealth(int newHealth) {
 
-        if (!canBeReduced && newHealth < _health) return this;
+        if (!_canBeReduced && newHealth < _health) return this;
         newHealth = Mathf.Clamp(newHealth, 0, _maxHealth);
         if (newHealth == _health) return this;
 
@@ -90,7 +92,7 @@ public class Health : MonoBehaviour {
 
     public Health SetCanBeReduced(bool newCanBeReduced) {
 
-        canBeReduced = newCanBeReduced;
+        _canBeReduced = newCanBeReduced;
         return this;
     }
 

@@ -13,15 +13,17 @@ public class Shield : MonoBehaviour {
     [SerializeField] new Renderer renderer;
 
     Health health;
+    bool defaultCanBeReducedValue = true;
 
     public bool isOn { get; private set; }
 
-    private void Awake() {
+    private void Start() {
 
         collider = collider ?? GetComponentInChildren<Collider>();
         renderer = renderer ?? GetComponentInChildren<Renderer>();
 
         health = GetComponent<Health>();
+        defaultCanBeReducedValue = health.canBeReduced;
 
         TurnOff();
     }
@@ -70,6 +72,6 @@ public class Shield : MonoBehaviour {
 
         collider.enabled = false;
         isOn = false;
-        health.SetCanBeReduced(true);
+        health.SetCanBeReduced(defaultCanBeReducedValue);
     }
 }
