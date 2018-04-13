@@ -19,11 +19,13 @@ public class Shield : MonoBehaviour {
 
     private void Start() {
 
+        health = GetComponent<Health>();
+        defaultCanBeReducedValue = health.canBeReduced;
+
         collider = collider ?? GetComponentInChildren<Collider>();
         renderer = renderer ?? GetComponentInChildren<Renderer>();
 
-        health = GetComponent<Health>();
-        defaultCanBeReducedValue = health.canBeReduced;
+        renderer.enabled = true;
 
         TurnOff();
     }

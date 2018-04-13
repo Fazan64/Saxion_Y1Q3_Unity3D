@@ -438,6 +438,15 @@ Prefab:
       propertyPath: m_Volume
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 23461954629260360, guid: b94734a7762ae49c2b1d31f0d94d6e04,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726288158598728, guid: b94734a7762ae49c2b1d31f0d94d6e04, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b94734a7762ae49c2b1d31f0d94d6e04, type: 2}
   m_IsPrefabParent: 0
@@ -643,7 +652,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-3510462
+  m_Name: pb_Mesh-1290
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -7457,7 +7466,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4773865237982996, guid: 5e8a73e784b5b413e951138c3769aad2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 4.53
       objectReference: {fileID: 0}
     - target: {fileID: 4773865237982996, guid: 5e8a73e784b5b413e951138c3769aad2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -7488,11 +7497,6 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 116739144}
-    - target: {fileID: 114200190017940510, guid: 5e8a73e784b5b413e951138c3769aad2,
-        type: 2}
-      propertyPath: randomizationAngle
-      value: 175
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e8a73e784b5b413e951138c3769aad2, type: 2}
   m_IsPrefabParent: 0
@@ -7621,7 +7625,7 @@ MonoBehaviour:
   m_text: 11000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 808aa8f1ab804104aa7d0c337a6c1481, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 808aa8f1ab804104aa7d0c337a6c1481, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: db7f2cfbf23d6d54ca4e74a9abd55326, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8005,6 +8009,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMesh: {fileID: 677614179}
+  animationScale: 1
+  animationDuration: 0.2
+  animationVibrato: 10
 --- !u!1 &781757371
 GameObject:
   m_ObjectHideFlags: 0

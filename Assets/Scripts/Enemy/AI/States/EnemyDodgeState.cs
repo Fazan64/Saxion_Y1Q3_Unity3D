@@ -35,6 +35,7 @@ public class EnemyDodgeState : FSMState<Enemy> {
         Vector3 ownPosition = transform.position;
 
         Vector3 toPlayer = Player.instance.transform.position - ownPosition;
+        toPlayer = Vector3.ProjectOnPlane(toPlayer, Vector3.up);
         Vector3 sideways = Vector3.Cross(Vector3.up, toPlayer).normalized;
 
         float sign = Random.value > 0.5f ? 1f : -1f;

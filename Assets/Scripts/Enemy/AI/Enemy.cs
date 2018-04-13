@@ -38,6 +38,8 @@ public class Enemy : MonoBehaviour, IAgent {
         if (fsm.GetCurrentState() == null) {
             fsm.ChangeState<EnemyParachuteDeployingState>();
         }
+
+        health.OnDeath += (sender) => GlobalEvents.OnEnemyDead.Invoke(gameObject);
     }
 
     public void Print(string message) {
