@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Assertions;
 using DG.Tweening;
 using TMPro;
@@ -13,6 +14,9 @@ public class GameOverScreen : TransitionableScreen {
 
     [SerializeField] TMP_Text scoreTextMesh;
     [SerializeField] string scoreFormatString = "Score: {0}";
+    [SerializeField] Image background;
+    [SerializeField] float finalBackgroundAlpha = 1f;
+    [SerializeField] float backgroundWhiteningDuration = 10f;
 
     protected override void Start() {
         
@@ -21,6 +25,7 @@ public class GameOverScreen : TransitionableScreen {
         Player.instance.OnDeath += (sender) => this.TransitionTo();
 
         Assert.IsNotNull(scoreTextMesh);
+        Assert.IsNotNull(background);
     }
 
     void Update() {
@@ -34,10 +39,9 @@ public class GameOverScreen : TransitionableScreen {
 
         canvasGroup.DOFade(1f, transitionDuration).SetEase(Ease.InOutSine);
         scoreTextMesh.text = string.Format(scoreFormatString, Player.instance.score.ToString());
-    }
 
-    protected override void OnTransitionOut() {
-
-        canvasGroup.DOFade(0f, transitionDuration).SetEase(Ease.InOutSine);
+        Color newColor = background.color;
+        newColor.a = finalBackgroundAlpha;
+        background.DOColor(newColor, backgroundWhiteningDuration).SetEase(Ease.OutSine);
     }
 }
