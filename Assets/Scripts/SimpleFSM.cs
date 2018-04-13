@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 
 /// A simple stack-based finite state machine
-public class FiniteStateMachine {
+public class SimpleFSM {
 
     Stack<Action> stack = new Stack<Action>();
 
-    public FiniteStateMachine() {}
-    public FiniteStateMachine(Action state) {
+    public SimpleFSM() {}
+    public SimpleFSM(Action state) {
         PushState(state);
     }
 
@@ -30,7 +30,7 @@ public class FiniteStateMachine {
 public static class FiniteStateMachineExtensions {
 
     /// A shortcut for PopState(); PushState(newState);
-    public static void ReplaceState(this FiniteStateMachine fsm, Action state) {
+    public static void ReplaceState(this SimpleFSM fsm, Action state) {
 
         fsm.PopState();
         fsm.PushState(state);

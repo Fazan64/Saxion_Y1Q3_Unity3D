@@ -43,13 +43,27 @@ GameObject:
   - component: {fileID: 54388844517769870}
   - component: {fileID: 195211203877563200}
   - component: {fileID: 114573842272620940}
-  - component: {fileID: 114707292862817024}
-  - component: {fileID: 114763100554931216}
-  - component: {fileID: 114232809870884840}
+  - component: {fileID: 114033283630411532}
   - component: {fileID: 114283503906507836}
   - component: {fileID: 114101570110147834}
   m_Layer: 0
   m_Name: Enemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1710428934887134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4501659651500912}
+  - component: {fileID: 114996452324962676}
+  m_Layer: 0
+  m_Name: FSMStates
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,6 +131,19 @@ Transform:
   m_Father: {fileID: 4773865237982996}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4501659651500912
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1710428934887134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4773865237982996}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4773865237982996
 Transform:
   m_ObjectHideFlags: 1
@@ -129,6 +156,7 @@ Transform:
   m_Children:
   - {fileID: 4481526372408454}
   - {fileID: 4945784864016534}
+  - {fileID: 4501659651500912}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -403,6 +431,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114033283630411532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1357445423822242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bda849919e954db8938ca32864e35ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startShootDistance: 500
+  endShootDistance: 500
+  aimingTime: 1
 --- !u!114 &114101570110147834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -443,20 +485,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityType: 4
---- !u!114 &114232809870884840
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1357445423822242}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8276987219bc849ec9d70dbbc455b909, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startShootDistance: 500
-  endShootDistance: 500
-  aimingTime: 0.5
 --- !u!114 &114283503906507836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -511,35 +539,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Health+OnHealthChangedEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
---- !u!114 &114707292862817024
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1357445423822242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f1278159a2a49d49542a639aa38cba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbody: {fileID: 54388844517769870}
-  navMeshAgent: {fileID: 195211203877563200}
-  ai: {fileID: 114232809870884840}
---- !u!114 &114763100554931216
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1357445423822242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ebc7af20e5234fe28c7ea3a1f10242c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  groundCheckRadius: 1
 --- !u!114 &114764690090891052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1679,6 +1678,21 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
+--- !u!114 &114996452324962676
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1710428934887134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35fa20b3f241549568faa9d879f488ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 1040
+  groundCheckRadius: 2
 --- !u!136 &136027682978217370
 CapsuleCollider:
   m_ObjectHideFlags: 1

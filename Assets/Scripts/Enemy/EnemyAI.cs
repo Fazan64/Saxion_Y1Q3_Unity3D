@@ -6,7 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.Assertions;
 
 [RequireComponent(typeof(Health), typeof(NavMeshAgent))]
-public class EnemyAI : MonoBehaviour {
+public class EnemyAI : MonoBehaviour{
     
     public float startShootDistance = 10f;
     public float endShootDistance = 15f;
@@ -18,7 +18,7 @@ public class EnemyAI : MonoBehaviour {
     NavMeshAgent agent;
     ShootingController shooter;
 
-    FiniteStateMachine finiteStateMachine;
+    SimpleFSM finiteStateMachine;
 
     float timeTillCanShoot;
     Material material;
@@ -36,7 +36,7 @@ public class EnemyAI : MonoBehaviour {
         player = Player.instance.gameObject;
         Debug.Assert(player != null, "Player not found!");
 
-        finiteStateMachine = new FiniteStateMachine(StateFollowPlayer);
+        finiteStateMachine = new SimpleFSM(StateFollowPlayer);
     }
 
     void Update() {

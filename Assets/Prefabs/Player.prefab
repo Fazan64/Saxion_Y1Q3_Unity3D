@@ -290,7 +290,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 2080
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -734,7 +734,7 @@ MonoBehaviour:
   _health: 100
   _maxHealth: 100
   destroyOnDeath: 0
-  canBeReduced: 1
+  _canBeReduced: 0
   OnDeathUnityEvent:
     m_PersistentCalls:
       m_Calls: []

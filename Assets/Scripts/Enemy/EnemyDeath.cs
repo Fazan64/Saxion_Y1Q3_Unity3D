@@ -3,20 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(Health), typeof(EnemyStateController))]
+[RequireComponent(typeof(Health), typeof(Enemy))]
 public class EnemyDeath : MonoBehaviour {
 
-    Health health;
-
-    void Awake() {
-
-        GlobalEvents.OnEnemyCreated.Invoke(gameObject);
-    }
+    private Enemy enemy;
 
     void Start () {
-        
-        health = GetComponent<Health>();
-        health.OnDeath += (sender) => {
+
+        enemy = GetComponent<Enemy>();
+        GetComponent<Health>().OnDeath += (sender) => {
 
             GlobalEvents.OnEnemyDead.Invoke(gameObject);
             SwitchToDead();
@@ -24,9 +19,8 @@ public class EnemyDeath : MonoBehaviour {
 	}
 
     private void SwitchToDead() {
-
-        GetComponent<EnemyStateController>().SetStateRagdoll();
-        DetachParachuteIfAttached();
+        
+        enemy.fsm.ChangeState<EnemyDeadState>();
         StartFadeout();
     }
 
@@ -37,13 +31,5 @@ public class EnemyDeath : MonoBehaviour {
                 gameObject.AddComponent<BodyFadeout>();
 
         fadeout.enabled = true;
-    }
-
-    private void DetachParachuteIfAttached() {
-
-        var parachute = GetComponentInChildren<Parachute>();
-        if (parachute == null) return;
-
-        parachute.Detach();
     }
 }
