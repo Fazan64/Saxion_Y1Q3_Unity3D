@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Assertions;
 
-[RequireComponent(typeof(Health), typeof(NavMeshAgent), typeof(ShootingController))]
+[RequireComponent(typeof(Health), typeof(NavMeshAgent))]
 public class EnemyAI : MonoBehaviour {
     
     public float startShootDistance = 10f;
@@ -26,8 +27,11 @@ public class EnemyAI : MonoBehaviour {
 
         health = GetComponent<Health>();
         agent  = GetComponent<NavMeshAgent>();
-        shooter  = GetComponent<ShootingController>();
+        shooter  = GetComponentInChildren<ShootingController>();
         material = GetComponent<Renderer>().material;
+
+        Assert.IsNotNull(shooter);
+        Assert.IsNotNull(material);
 
         player = Player.instance.gameObject;
         Debug.Assert(player != null, "Player not found!");
