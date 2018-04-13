@@ -413,6 +413,31 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114356696366790228, guid: b94734a7762ae49c2b1d31f0d94d6e04,
+        type: 2}
+      propertyPath: m_WalkSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114356696366790228, guid: b94734a7762ae49c2b1d31f0d94d6e04,
+        type: 2}
+      propertyPath: m_RunstepLenghten
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114356696366790228, guid: b94734a7762ae49c2b1d31f0d94d6e04,
+        type: 2}
+      propertyPath: m_UseFovKick
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114356696366790228, guid: b94734a7762ae49c2b1d31f0d94d6e04,
+        type: 2}
+      propertyPath: m_UseHeadBob
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82695872796689190, guid: b94734a7762ae49c2b1d31f0d94d6e04,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b94734a7762ae49c2b1d31f0d94d6e04, type: 2}
   m_IsPrefabParent: 0
@@ -618,7 +643,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-2367820
+  m_Name: pb_Mesh-3510462
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -7463,6 +7488,11 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 116739144}
+    - target: {fileID: 114200190017940510, guid: 5e8a73e784b5b413e951138c3769aad2,
+        type: 2}
+      propertyPath: randomizationAngle
+      value: 175
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e8a73e784b5b413e951138c3769aad2, type: 2}
   m_IsPrefabParent: 0

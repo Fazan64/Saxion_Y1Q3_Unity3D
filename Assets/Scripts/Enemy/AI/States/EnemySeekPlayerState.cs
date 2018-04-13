@@ -1,14 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-public class EnemySeekPlayerState : AbstractState<Enemy> {
+public class EnemySeekPlayerState : FSMState<Enemy> {
 
     public override void Enter() {
 
         base.Enter();
 
+        agent.navMeshAgent.enabled = true;
         agent.navMeshAgent.isStopped = false;
-        agent.material.color = Color.white;
     }
 
     public override void Update() {

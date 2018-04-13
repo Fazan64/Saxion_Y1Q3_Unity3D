@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class AbstractState<T> : MonoBehaviour where T : class, IAgent {
+public class FSMState<T> : MonoBehaviour where T : class, IAgent {
     
     protected T agent;
 

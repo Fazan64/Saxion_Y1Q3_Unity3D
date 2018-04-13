@@ -40,11 +40,6 @@ public class Enemy : MonoBehaviour, IAgent {
         }
     }
 
-    void Update() {
-
-        fsm.Update();
-    }
-
     public void Print(string message) {
         
         Debug.Log(typeof(Enemy).Name + ": " + message);

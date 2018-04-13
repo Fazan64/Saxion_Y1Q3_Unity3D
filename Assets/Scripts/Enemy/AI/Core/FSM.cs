@@ -2,16 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
 public class FSM<AgentT> where AgentT : Component, IAgent {
     
-    //maps the class name of a state to a specific instance of that state
-    private readonly Dictionary<Type, AbstractState<AgentT>> stateCache = new Dictionary<Type, AbstractState<AgentT>>();
+    private readonly Dictionary<Type, FSMState<AgentT>> stateCache = new Dictionary<Type, FSMState<AgentT>>();
 
-    //the current state we are in
-    [SerializeField] private AbstractState<AgentT> currentState;
+    private FSMState<AgentT> currentState;
 
-    //reference to our target so we can pass into our new states.
     private readonly AgentT agent;
     private readonly Transform statesTransform;
 
@@ -21,13 +17,7 @@ public class FSM<AgentT> where AgentT : Component, IAgent {
         statesTransform = FindOrMakeStatesTransform();
     }
 
-    public void Update() {
-
-        if (currentState != null)
-            currentState.Update();
-    }
-
-    public AbstractState<AgentT> GetCurrentState() {
+    public FSMState<AgentT> GetCurrentState() {
         return currentState;
     }
 
@@ -39,11 +29,7 @@ public class FSM<AgentT> where AgentT : Component, IAgent {
         }
     }
 
-    /**
-	 * Tells the FSM to enter a state which is a subclass of AbstractState<T>.
-	 * So for exampe for FSM<Bob> the state entered must be a subclass of AbstractState<Bob>
-	 */
-    public void ChangeState<StateT>() where StateT : AbstractState<AgentT> {
+    public void ChangeState<StateT>() where StateT : FSMState<AgentT> {
         
         //check if a state like this was already in our cache
         if (!stateCache.ContainsKey(typeof(StateT))) {
@@ -54,11 +40,11 @@ public class FSM<AgentT> where AgentT : Component, IAgent {
             state.SetAgent(agent);
         }
 
-        AbstractState<AgentT> newState = stateCache[typeof(StateT)];
+        FSMState<AgentT> newState = stateCache[typeof(StateT)];
         ChangeState(newState);
     }
 
-    private void ChangeState(AbstractState<AgentT> pNewState) {
+    private void ChangeState(FSMState<AgentT> pNewState) {
         
         if (currentState == pNewState) return;
 
@@ -79,8 +65,8 @@ public class FSM<AgentT> where AgentT : Component, IAgent {
             return newGameObject.transform;
         }
 
-        AbstractState<AgentT>[] states = transform.GetComponentsInChildren<AbstractState<AgentT>>();
-        foreach (AbstractState<AgentT> state in states) {
+        FSMState<AgentT>[] states = transform.GetComponentsInChildren<FSMState<AgentT>>();
+        foreach (FSMState<AgentT> state in states) {
             
             stateCache.Add(state.GetType(), state);
             state.SetAgent(agent);

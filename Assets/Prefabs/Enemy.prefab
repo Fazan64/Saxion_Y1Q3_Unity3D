@@ -62,6 +62,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4501659651500912}
   - component: {fileID: 114996452324962676}
+  - component: {fileID: 114386560681127208}
+  - component: {fileID: 114200190017940510}
   m_Layer: 0
   m_Name: FSMStates
   m_TagString: Untagged
@@ -444,7 +446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startShootDistance: 500
   endShootDistance: 500
-  aimingTime: 1
+  aimingTime: 0.5
 --- !u!114 &114101570110147834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -485,6 +487,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityType: 4
+--- !u!114 &114200190017940510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1710428934887134}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d4cb66ce0094940bb425a22f7590db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minRange: 1
+  maxRange: 2
+  randomizationAngle: 80
 --- !u!114 &114283503906507836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -514,6 +530,18 @@ MonoBehaviour:
   obstacleDetectionLayerMask:
     serializedVersion: 2
     m_Bits: 4294964697
+--- !u!114 &114386560681127208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1710428934887134}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eceb722c7b7f44ec8ba03806c6398911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dodgeChance: 0.5
 --- !u!114 &114573842272620940
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1692,7 +1720,7 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 1040
-  groundCheckRadius: 2
+  groundCheckRadius: 1
 --- !u!136 &136027682978217370
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1719,7 +1747,7 @@ NavMeshAgent:
   m_Acceleration: 16
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1

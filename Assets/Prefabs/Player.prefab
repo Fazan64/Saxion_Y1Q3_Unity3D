@@ -734,7 +734,7 @@ MonoBehaviour:
   _health: 100
   _maxHealth: 100
   destroyOnDeath: 0
-  _canBeReduced: 0
+  _canBeReduced: 1
   OnDeathUnityEvent:
     m_PersistentCalls:
       m_Calls: []

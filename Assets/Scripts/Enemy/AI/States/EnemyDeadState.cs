@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class EnemyDeadState : AbstractState<Enemy> {
+public class EnemyDeadState : FSMState<Enemy> {
 
     public override void Enter() {
 

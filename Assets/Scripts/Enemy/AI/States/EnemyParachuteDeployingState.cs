@@ -3,10 +3,12 @@ using System.Collections;
 
 #pragma warning disable 0649
 
-public class EnemyParachuteDeployingState : AbstractState<Enemy> {
+public class EnemyParachuteDeployingState : FSMState<Enemy> {
 
     [SerializeField] LayerMask groundLayerMask;
     [SerializeField] float groundCheckRadius = 1f;
+
+    bool didDetachParachute;
 
     public override void Enter() {
 
@@ -20,11 +22,15 @@ public class EnemyParachuteDeployingState : AbstractState<Enemy> {
         
         base.Update();
 
-        bool isLanded = Physics.CheckSphere(transform.position, groundCheckRadius, groundLayerMask);
-        if (isLanded) {
-            
-            DetachParachuteIfAttached();
-            agent.fsm.ChangeState<EnemySeekPlayerState>();
+        if (!didDetachParachute) {
+
+            bool shouldDetachParachute = Physics.CheckSphere(transform.position, groundCheckRadius, groundLayerMask);
+            if (shouldDetachParachute) {
+
+                DetachParachuteIfAttached();
+                didDetachParachute = true;
+                agent.fsm.ChangeState<EnemySeekPlayerState>();
+            }
         }
     }
 
@@ -35,6 +41,18 @@ public class EnemyParachuteDeployingState : AbstractState<Enemy> {
         agent.rigidbody.isKinematic = true;
         agent.navMeshAgent.enabled  = true;
     }
+
+    /*
+    private void OnCollisionEnter(Collision collision) {
+
+        if ((collision.gameObject.layer & groundLayerMask) == 0) return;
+
+        if (!didDetachParachute) {
+            DetachParachuteIfAttached();
+        }
+
+        agent.fsm.ChangeState<EnemySeekPlayerState>();
+    }*/
 
     private void DetachParachuteIfAttached() {
 
