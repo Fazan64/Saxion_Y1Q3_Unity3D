@@ -28,4 +28,10 @@ public class ScoreBonusText : MonoBehaviour {
         Vector3 fromPlayer = transform.position - Player.instance.transform.position;
         transform.rotation = Quaternion.LookRotation(fromPlayer.normalized, Vector3.up);
     }
+
+    public void SetText(string text) {
+
+        textMesh = textMesh ?? GetComponent<TMP_Text>();
+        textMesh.text = text;
+    }
 }

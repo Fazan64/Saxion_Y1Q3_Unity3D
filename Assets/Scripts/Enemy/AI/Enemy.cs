@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 
 [RequireComponent(typeof(Health), typeof(NavMeshAgent), typeof(Rigidbody))]
 public class Enemy : MonoBehaviour, IAgent {
-
+    
     public float startShootDistance = 10f;
     public float endShootDistance = 15f;
     public float aimingTime = 1f;

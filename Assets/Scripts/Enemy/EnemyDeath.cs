@@ -21,17 +21,7 @@ public class EnemyDeath : MonoBehaviour {
     private void OnDeathHandler(Health sender) {
 
         enemy.fsm.ChangeState<EnemyDeadState>();
-        StartFadeout();
         CreateBonusText();
-    }
-
-    private void StartFadeout() {
-
-        var fadeout =
-                GetComponent<BodyFadeout>() ??
-                gameObject.AddComponent<BodyFadeout>();
-
-        fadeout.enabled = true;
     }
 
     private void CreateBonusText() {

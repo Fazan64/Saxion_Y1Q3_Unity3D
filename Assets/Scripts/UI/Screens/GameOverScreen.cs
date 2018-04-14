@@ -37,11 +37,18 @@ public class GameOverScreen : TransitionableScreen {
 
     protected override void OnTransitionIn() {
 
+        GameController.instance.canPause = false;
+
         canvasGroup.DOFade(1f, transitionDuration).SetEase(Ease.InOutSine);
         scoreTextMesh.text = string.Format(scoreFormatString, Player.instance.score.ToString());
 
         Color newColor = background.color;
         newColor.a = finalBackgroundAlpha;
         background.DOColor(newColor, backgroundWhiteningDuration).SetEase(Ease.OutSine);
+    }
+
+    void OnDestroy() {
+
+        GameController.instance.canPause = true;
     }
 }

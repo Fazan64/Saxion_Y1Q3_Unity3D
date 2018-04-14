@@ -8,6 +8,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(CanvasGroup))]
 public class TransitionableScreen : MonoBehaviour {
 
+    protected static Stack<TransitionableScreen> previousScreens = new Stack<TransitionableScreen>();
     protected static TransitionableScreen currentlySelected;
 
     [SerializeField] bool startSelected;
@@ -43,11 +44,25 @@ public class TransitionableScreen : MonoBehaviour {
         if (this.isCurrentlySelected) return;
 
         if (currentlySelected != null) {
+            
             Deactivate(currentlySelected);
+            previousScreens.Push(currentlySelected);
         }
 
         currentlySelected = this;
         Activate(this);
+    }
+
+    public static void TransitionToPrevious() {
+
+        if (previousScreens.Count == 0) return;
+
+        if (currentlySelected != null) {
+            Deactivate(currentlySelected);
+        }
+
+        currentlySelected = previousScreens.Pop();
+        Activate(currentlySelected);
     }
 
     protected virtual void OnTransitionIn()  {}

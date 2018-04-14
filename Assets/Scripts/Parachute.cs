@@ -20,7 +20,7 @@ public class Parachute : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
         if (!isDetached && targetRigidbody.velocity.magnitude <= autoDetachMinSpeed) {
             
@@ -51,7 +51,7 @@ public class Parachute : MonoBehaviour {
         float verticalSpeed = Vector3.Dot(targetRigidbody.velocity, transform.up);
         if (verticalSpeed < 0f) {
 
-            Vector3 force = transform.up * verticalSpeed * verticalSpeed * dragCoeficient;
+            Vector3 force = transform.up * verticalSpeed * verticalSpeed * dragCoeficient * Time.fixedDeltaTime;
             targetRigidbody.AddForce(force);
         }
 
@@ -61,7 +61,7 @@ public class Parachute : MonoBehaviour {
             .FromToRotation(transform.up, Vector3.up)
             .ToAngleAxis(out angle, out axis);
 
-        targetRigidbody.AddTorque(axis * angle * 0.01f);
+        targetRigidbody.AddTorque(axis * angle * Time.fixedDeltaTime);
     }
 
     private void FlyOff() {
