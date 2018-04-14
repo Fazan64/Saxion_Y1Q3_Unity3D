@@ -43,5 +43,13 @@ public class GameOverScreen : TransitionableScreen {
         Color newColor = background.color;
         newColor.a = finalBackgroundAlpha;
         background.DOColor(newColor, backgroundWhiteningDuration).SetEase(Ease.OutSine);
+
+        transform.DOKill();
+        transform.localScale = Vector3.one;
+        transform
+            .DOScale(2f, transitionDuration)
+            .From()
+            .SetEase(Ease.OutExpo)
+            .SetUpdate(isIndependentUpdate: true);
     }
 }

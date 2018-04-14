@@ -8,6 +8,7 @@ public class PlayerDeath : MonoBehaviour {
     public float timeTillRestart = 2f;
     public float timeScaleMultiplier = 0.4f;
 
+    private bool didDie;
     private float originalTimeScale;
     private float originalFixedDeltaTime;
 
@@ -18,9 +19,11 @@ public class PlayerDeath : MonoBehaviour {
     }
 
     void OnDestroy() {
-        
-        Time.timeScale = originalTimeScale;
-        Time.fixedDeltaTime = originalFixedDeltaTime;
+
+        if (didDie) {
+            Time.timeScale = originalTimeScale;
+            Time.fixedDeltaTime = originalFixedDeltaTime;
+        }
     }
 
     private void OnDeathHandler(Health sender) {
@@ -39,5 +42,7 @@ public class PlayerDeath : MonoBehaviour {
 
         Time.timeScale      *= timeScaleMultiplier;
         Time.fixedDeltaTime *= timeScaleMultiplier;
+
+        didDie = true;
     }
 }

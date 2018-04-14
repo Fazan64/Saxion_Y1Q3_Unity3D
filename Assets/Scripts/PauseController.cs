@@ -11,7 +11,7 @@ public class PauseController : Singleton<PauseController> {
 
     void Start() {
 
-        Player.instance.OnDeath += OnPlayerDeath;;
+        Player.instance.OnDeath += OnPlayerDeath;
     }
 
     void Update() {
@@ -31,7 +31,7 @@ public class PauseController : Singleton<PauseController> {
         Unpause();
     }
 
-    private void Pause() {
+    public void Pause() {
 
         if (isPaused) return;
 
@@ -42,12 +42,12 @@ public class PauseController : Singleton<PauseController> {
         GlobalEvents.OnGamePause.Invoke();
     }
 
-    private void Unpause() {
+    public void Unpause() {
 
         if (!isPaused) return;
 
         Time.timeScale = timeScaleBeforePause;
-
+       
         isPaused = false;
         GlobalEvents.OnGameUnpause.Invoke();
     }
