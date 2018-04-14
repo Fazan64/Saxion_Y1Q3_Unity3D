@@ -10,6 +10,8 @@ public class Player : Singleton<Player> {
 
     public int score;
 
+    public Health health { get; private set; }
+
     void Awake() {
         
         GlobalEvents.OnEnemyDead.AddListener(OnEnemyDeadHandler);
@@ -18,13 +20,19 @@ public class Player : Singleton<Player> {
         };
     }
 
+    void OnDestroy() {
+
+        GlobalEvents.OnEnemyDead.RemoveListener(OnEnemyDeadHandler);
+    }
+
     void Start() {
 
-        GetComponent<Health>().OnDeath += (sender) => OnDeath.Invoke(this);
+        health = GetComponent<Health>();
+        health.OnDeath += (sender) => OnDeath.Invoke(this);
     }
 
     private void OnEnemyDeadHandler(GameObject enemy) {
-
+        
         score += 100;
     }
 }

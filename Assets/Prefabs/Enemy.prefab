@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1240a3f71654a46f9b1e9933ee04639a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragCoeficient: 0.05
+  dragCoeficient: 5
   targetRigidbody: {fileID: 54388844517769870}
   autoDetach: 0
   autoDetachMinSpeed: 0.1

@@ -153,6 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24e5b4f266e614ce0b52ee91d5e3bcb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startGameImmediately: 0
+  loadMainMenuOnStart: 1
   mainLevelSceneName: main level
   mainMenuSceneName: main menu

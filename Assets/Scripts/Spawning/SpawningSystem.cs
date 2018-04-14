@@ -24,10 +24,16 @@ public class SpawningSystem : MonoBehaviour {
 
         playerTransform = FindObjectOfType<PlayerController>().transform;
 
-        GlobalEvents.OnEnemyCreated.AddListener(enemy => numActiveEnemies += 1);
-        GlobalEvents.OnEnemyDead.AddListener(enemy => numActiveEnemies -= 1);
+        GlobalEvents.OnEnemyCreated.AddListener(OnEnemyCreated);
+        GlobalEvents.OnEnemyDead.AddListener(OnEnemyDead);
 
         StartCoroutine(StartWaveLoop());
+    }
+
+    void OnDestroy() {
+
+        GlobalEvents.OnEnemyCreated.RemoveListener(OnEnemyCreated);
+        GlobalEvents.OnEnemyDead.RemoveListener(OnEnemyDead);
     }
 
     IEnumerator StartWaveLoop() {
@@ -73,5 +79,16 @@ public class SpawningSystem : MonoBehaviour {
 
         //throw new NotImplementedException();
         return (spawner.transform.position - playerTransform.position).magnitude;
+    }
+
+
+    private void OnEnemyCreated(GameObject enemy) {
+
+        numActiveEnemies += 1;
+    }
+
+    private void OnEnemyDead(GameObject enemy) {
+
+        numActiveEnemies -= 1;
     }
 }

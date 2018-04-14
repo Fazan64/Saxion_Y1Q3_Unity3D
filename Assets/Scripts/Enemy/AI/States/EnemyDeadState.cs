@@ -5,9 +5,19 @@ public class EnemyDeadState : FSMState<Enemy> {
 
     public override void Enter() {
 
+        base.Enter();
+
         agent.rigidbody.isKinematic = false;
         agent.navMeshAgent.enabled = false;
+        StartFadeout();
+    }
 
-        base.Enter();
+    private void StartFadeout() {
+
+        var fadeout =
+                agent.GetComponent<BodyFadeout>() ??
+                agent.gameObject.AddComponent<BodyFadeout>();
+
+        fadeout.enabled = true;
     }
 }

@@ -8,75 +8,37 @@ using UnityEngine.SceneManagement;
 
 public class GameController : Singleton<GameController> {
 
-    [SerializeField] bool startGameImmediately;
+    [SerializeField] bool loadMainMenuOnStart;
     [SerializeField] string mainLevelSceneName = "main level";
     [SerializeField] string mainMenuSceneName  = "main menu";
 
     void Awake() {
 
-        if (!startGameImmediately) {
+        DontDestroyOnLoad(this);
+    }
+
+    void Start() {
+
+        if (loadMainMenuOnStart) {
             ShowMainMenu();
-        } else {
-            StartGame();
         }
     }
 
     public void ShowMainMenu() {
-        
-        UnloadAllOtherScenes();
-        StartCoroutine(ShowMainMenuCoroutine());
+
+        DG.Tweening.DOTween.Clear(destroy: true);
+        SceneManager.LoadScene(mainMenuSceneName);
     }
 
     public void StartGame() {
 
-        UnloadAllOtherScenes();
-        StartCoroutine(StartGameCoroutine());
+        DG.Tweening.DOTween.Clear(destroy: true);
+        SceneManager.LoadScene(mainLevelSceneName);
     }
 
     public void RestartGame() {
 
         DG.Tweening.DOTween.Clear(destroy: true);
-
-        UnloadAllOtherScenes();
-        StartCoroutine(RestartGameCoroutine());
-
-        //AsyncOperation result = SceneManager.UnloadSceneAsync(mainLevelSceneName);
-        //result.completed += (sender) => StartCoroutine(RestartGameCoroutine());
-    }
-
-    private void UnloadAllOtherScenes() {
-
-        int ownBuildIndex = gameObject.scene.buildIndex;
-        for (int i = SceneManager.sceneCount - 1; i >= 0; --i) {
-
-            if (i >= SceneManager.sceneCount) continue;
-
-            Scene scene = SceneManager.GetSceneAt(i);
-            if (scene.buildIndex == ownBuildIndex) continue;
-
-            SceneManager.UnloadSceneAsync(scene.buildIndex);
-        }
-    }
-
-    private IEnumerator ShowMainMenuCoroutine() {
-
-        SceneManager.LoadScene(mainMenuSceneName, LoadSceneMode.Additive);
-        yield return null;
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(mainMenuSceneName));
-    }
-
-    private IEnumerator StartGameCoroutine() {
-        
-        SceneManager.LoadScene(mainLevelSceneName, LoadSceneMode.Additive);
-        yield return null;
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(mainLevelSceneName));
-    }
-
-    private IEnumerator RestartGameCoroutine() {
-
-        SceneManager.LoadScene(mainLevelSceneName, LoadSceneMode.Additive);
-        yield return null;
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(mainLevelSceneName));
-        GlobalEvents.OnGameRestart.Invoke();
+        SceneManager.LoadScene(mainLevelSceneName);
     }
 }
