@@ -16,4 +16,9 @@ public class MainMenu : MonoBehaviour {
 
         GameController.instance.StartGame();
     }
+
+    public void StartTutorial() {
+
+        GameController.instance.StartTutorial();
+    }
 }

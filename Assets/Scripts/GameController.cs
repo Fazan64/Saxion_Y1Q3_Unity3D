@@ -11,6 +11,7 @@ public class GameController : Singleton<GameController> {
     [SerializeField] bool loadMainMenuOnStart;
     [SerializeField] string mainLevelSceneName = "main level";
     [SerializeField] string mainMenuSceneName  = "main menu";
+    [SerializeField] string tutorialSceneName  = "tutorial";
 
     void Awake() {
 
@@ -36,9 +37,15 @@ public class GameController : Singleton<GameController> {
         SceneManager.LoadScene(mainLevelSceneName);
     }
 
+    public void StartTutorial() {
+
+        DG.Tweening.DOTween.Clear(destroy: true);
+        SceneManager.LoadScene(tutorialSceneName);
+    }
+
     public void RestartGame() {
 
         DG.Tweening.DOTween.Clear(destroy: true);
-        SceneManager.LoadScene(mainLevelSceneName);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
