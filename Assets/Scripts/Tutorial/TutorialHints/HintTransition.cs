@@ -12,7 +12,6 @@ public class HintTransition : MonoBehaviour {
     [SerializeField] float maxScale = 2f;
 
     private CanvasGroup canvasGroup;
-    private RectTransform rectTransform;
 
     public bool isTransitionedIn { get; private set; }
 
@@ -24,7 +23,6 @@ public class HintTransition : MonoBehaviour {
     protected virtual void Start() {
 
         canvasGroup = GetComponent<CanvasGroup>();
-        rectTransform = GetComponent<RectTransform>();
     }
 
     public void TransitionIn() {

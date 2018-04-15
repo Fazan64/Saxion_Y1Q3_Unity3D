@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-#pragma warning disable CS0649
+#pragma warning disable 0649
 
 [RequireComponent(typeof(Health), typeof(AudioSource))]
 public class PlayerDamageFeedback : MonoBehaviour {
@@ -11,9 +11,8 @@ public class PlayerDamageFeedback : MonoBehaviour {
     [SerializeField] AudioClip audioClip;
     AudioSource audioSource;
 
-    new Camera camera;
+    new private Camera camera;
 
-	// Use this for initialization
 	void Start () {
 
         audioSource = GetComponent<AudioSource>();

@@ -13,16 +13,14 @@ public class Parachute : MonoBehaviour {
 
     bool isDetached;
 
-	// Use this for initialization
 	void Start () {
 
         targetRigidbody = targetRigidbody ?? GetComponentInParent<Rigidbody>();
 	}
 	
-	// Update is called once per frame
 	void FixedUpdate () {
 
-        if (!isDetached && targetRigidbody.velocity.magnitude <= autoDetachMinSpeed) {
+        if (!isDetached && autoDetach && targetRigidbody.velocity.magnitude <= autoDetachMinSpeed) {
             
             Detach();
         }

@@ -4,24 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class PauseScreen : TransitionableScreen {
+public class TutorialCompleteScreen : TransitionableScreen {
 
     [SerializeField] float transitionDuration = 1f;
     [SerializeField] float maxScale = 2f;
-
-    protected override void Start() {
-
-        base.Start();
-
-        GlobalEvents.OnGamePause.AddListener(TransitionTo);
-        GlobalEvents.OnGameUnpause.AddListener(TransitionToPrevious);
-    }
-
-    void OnDestroy() {
-
-        GlobalEvents.OnGamePause.RemoveListener(TransitionTo);
-        GlobalEvents.OnGameUnpause.RemoveListener(TransitionToPrevious);
-    }
 
     protected override void OnTransitionIn() {
 

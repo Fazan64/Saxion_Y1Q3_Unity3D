@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class CameraRotator : MonoBehaviour {
 
-    [SerializeField] Transform cameraTransform;
     [SerializeField] float rotationSpeed;
 
 	void Update () {

@@ -2,13 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 #pragma warning disable 0649
 
 public class Pickup : MonoBehaviour {
 
+    public class PickupEvent : UnityEvent<Pickup> {}
+
     [SerializeField] int healthIncrement;
     [SerializeField] int scoreIncrement;
+
+    [SerializeField] PickupEvent _onPickedUp = new PickupEvent();
+    public PickupEvent onPickedUp { get { return _onPickedUp; } }
 
     int playerLayer;
 
@@ -31,6 +37,8 @@ public class Pickup : MonoBehaviour {
         }
 
         PlayPickupEffect();
+
+        onPickedUp.Invoke(this);
         Destroy(gameObject);
     }
 

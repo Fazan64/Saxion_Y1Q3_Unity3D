@@ -17,30 +17,29 @@ public class JumpHint : HintTransition {
         base.Start();
 
         Assert.IsNotNull(trigger);
-        trigger.onTriggerEnter.AddListener(OnTargetTriggerEnter);
+        trigger.onPlayerTriggerEnter.AddListener(OnPlayerTriggerEnter);
     }
 
     void OnDestroy() {
 
-        trigger.onTriggerEnter.RemoveListener(OnTargetTriggerEnter);
+        trigger.onPlayerTriggerEnter.RemoveListener(OnPlayerTriggerEnter);
     }
 
     void Update() {
 
         if (isTransitionedIn && !didJump && IsJumping()) {
 
-            trigger.onTriggerEnter.RemoveListener(OnTargetTriggerEnter);
+            trigger.onPlayerTriggerEnter.RemoveListener(OnPlayerTriggerEnter);
             didJump = true;
             Invoke("TransitionOut", delayAfterJump);
         }
     }
 
-    private void OnTargetTriggerEnter(Collider collidee) {
+    private void OnPlayerTriggerEnter() {
 
-        if (isTransitionedIn) return;
-        if (collidee.attachedRigidbody.gameObject != Player.instance.gameObject) return;
-
-        TransitionIn();
+        if (!isTransitionedIn) {
+            TransitionIn();
+        }
     }
 
     private bool IsJumping() {

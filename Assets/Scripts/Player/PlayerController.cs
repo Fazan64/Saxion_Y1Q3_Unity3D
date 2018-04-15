@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#pragma warning disable CS0649
+#pragma warning disable 0649
 
 public class PlayerController : MonoBehaviour {
 
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour {
 
     private bool ShieldButtonPressed() {
 
-        return Input.GetButtonDown("Fire2") || Input.GetKeyDown(KeyCode.E);
+        return Input.GetButtonDown("Shield");
     }
 
     private void Fire() {

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameStarter : MonoBehaviour {
 
-    void Start() {
+    public void StartGame() {
 
-        GlobalEvents.OnGameStart.Invoke();
+        GameController.instance.StartGame();
     }
 }

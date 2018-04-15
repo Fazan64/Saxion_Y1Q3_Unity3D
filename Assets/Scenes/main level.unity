@@ -7832,7 +7832,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 586425044}
-  - component: {fileID: 586425045}
   m_Layer: 0
   m_Name: HUD
   m_TagString: Untagged
@@ -7854,17 +7853,6 @@ Transform:
   m_Father: {fileID: 892316621}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &586425045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 586425043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02069ad06831344c2afa7dbd203fcc17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &599780224
 GameObject:
   m_ObjectHideFlags: 0

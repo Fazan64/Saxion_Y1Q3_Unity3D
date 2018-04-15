@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-#pragma warning disable CS0649
+#pragma warning disable 0649
 
 public class Projectile : MonoBehaviour {
 
