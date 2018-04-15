@@ -57,15 +57,13 @@ public class PauseController : Singleton<PauseController> {
     }
 
     public void SetCanPause(bool newCanPause) {
-
+        
         _canPause = newCanPause;
-        if (isPaused) Unpause();
     }
 
     public void SetCanUnpause(bool newCanUnpause) {
 
         _canUnpause = newCanUnpause;
-        if (!isPaused) Pause();
     }
 
     private void OnPlayerDeath(Player player) {

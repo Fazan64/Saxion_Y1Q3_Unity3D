@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Assertions;
 
 #pragma warning disable 0649
 
@@ -10,6 +11,9 @@ public class Pickup : MonoBehaviour {
 
     public class PickupEvent : UnityEvent<Pickup> {}
 
+    [SerializeField] TriggerEvents trigger;
+    [SerializeField] ScoreBonusText bonusTextPrefab;
+    [SerializeField] float awayFromPlayerBonusTextDisplacement = 1f;
     [SerializeField] int healthIncrement;
     [SerializeField] int scoreIncrement;
 
@@ -20,20 +24,27 @@ public class Pickup : MonoBehaviour {
 
     void Start() {
 
-        playerLayer = LayerMask.NameToLayer("Player");
+        Assert.IsNotNull(trigger);
+        Assert.IsNotNull(bonusTextPrefab);
+
+        trigger.onPlayerTriggerEnter.AddListener(OnPlayerTriggerEnter);
     }
 
-    void OnCollisionEnter(Collision collision) {
+    void OnDestroy() {
 
-        GameObject collidee = collision.gameObject;
-        if (collidee.layer != playerLayer) return;
+        trigger.onPlayerTriggerEnter.RemoveListener(OnPlayerTriggerEnter);
+    }
+
+    private void OnPlayerTriggerEnter() {
+
+        Player player = Player.instance;
 
         if (healthIncrement > 0) {
-            collidee.GetComponent<Health>().Increase(healthIncrement);
+            player.health.Increase(healthIncrement);
         }
 
         if (scoreIncrement > 0) {
-            collidee.GetComponent<Player>().score += scoreIncrement; 
+            player.score += scoreIncrement; 
         }
 
         PlayPickupEffect();
@@ -43,7 +54,15 @@ public class Pickup : MonoBehaviour {
     }
 
     private void PlayPickupEffect() {
-        
-        //throw new NotImplementedException();
+
+        if (scoreIncrement > 0) {
+            
+            ScoreBonusText bonusText = Instantiate(bonusTextPrefab);
+            bonusText.SetText("+" + scoreIncrement);
+
+            Vector3 awayFromPlayer = transform.position - Player.instance.transform.position;
+            awayFromPlayer = Vector3.ProjectOnPlane(awayFromPlayer, Vector3.up).normalized;
+            bonusText.transform.position = transform.position + awayFromPlayer * awayFromPlayerBonusTextDisplacement;
+        }
     }
 }

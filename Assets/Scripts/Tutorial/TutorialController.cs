@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -8,13 +9,14 @@ using UnityEngine.Assertions;
 public class TutorialController : MonoBehaviour {
 
     [SerializeField] float airdropHeight = 100f;
+    [SerializeField] float endTutorialDelay = 1f;
     [SerializeField] Airdrop airdropPrefab;
     [SerializeField] PauseScreen pauseScreen;
     [SerializeField] TransitionableScreen tutorialEndScreen;
     [SerializeField] HintTransition[] hints;
 
     private bool airdropPickedUp;
-    private bool allHintsDone;
+    private bool isEndingTutorial;
 
     void Start() {
 
@@ -27,14 +29,12 @@ public class TutorialController : MonoBehaviour {
 
     void Update() {
 
-        if (!airdropPickedUp) {
+        if (isEndingTutorial) return;
 
-            return;
-        }
-
-        if (!allHintsDone) {
-
-            return;
+        if (airdropPickedUp && hints.All(hint => !hint.isTransitionedIn)) {
+            
+            isEndingTutorial = true;
+            StartCoroutine(EndTutorial());
         }
     }
 
@@ -51,7 +51,14 @@ public class TutorialController : MonoBehaviour {
         airdrop.GetComponent<Pickup>().onPickedUp.AddListener(AirdropPickedUpHandler);
     }
 
-    void AirdropPickedUpHandler(Pickup pickup) {
+    private void AirdropPickedUpHandler(Pickup pickup) {
+
+        airdropPickedUp = true;
+    }
+
+    private IEnumerator EndTutorial() {
+
+        yield return new WaitForSeconds(endTutorialDelay);
 
         pauseScreen.gameObject.SetActive(false);
 

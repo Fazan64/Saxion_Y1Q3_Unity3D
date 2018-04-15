@@ -131,7 +131,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4773865237982996}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4501659651500912
 Transform:
@@ -144,7 +144,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4773865237982996}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4773865237982996
 Transform:
@@ -156,9 +156,9 @@ Transform:
   m_LocalPosition: {x: 1, y: 4.53, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4481526372408454}
   - {fileID: 4945784864016534}
   - {fileID: 4501659651500912}
+  - {fileID: 4481526372408454}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -174,7 +174,7 @@ Transform:
   m_Children:
   - {fileID: 4266042145383408}
   m_Father: {fileID: 4773865237982996}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23489195902216210
 MeshRenderer:
@@ -512,7 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 202484678064e4a469d73c7bda6c93f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusTextPrefab: {fileID: 1499783631217960, guid: 1e70278da56e745beab6c614df1e17b7,
+  bonusTextPrefab: {fileID: 114489512721495598, guid: 1e70278da56e745beab6c614df1e17b7,
     type: 2}
 --- !u!114 &114349856889435552
 MonoBehaviour:

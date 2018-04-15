@@ -1,18 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
+using UnityEngine.Assertions;
 
 #pragma warning disable 0649
 
 [RequireComponent(typeof(Health), typeof(Enemy))]
 public class EnemyDeath : MonoBehaviour {
 
-    [SerializeField] GameObject bonusTextPrefab;
+    [SerializeField] ScoreBonusText bonusTextPrefab;
 
     private Enemy enemy;
 
     void Start () {
+
+        Assert.IsNotNull(bonusTextPrefab);
 
         enemy = GetComponent<Enemy>();
         GetComponent<Health>().OnDeath += OnDeathHandler;
@@ -26,7 +28,7 @@ public class EnemyDeath : MonoBehaviour {
 
     private void CreateBonusText() {
 
-        GameObject bonusText = Instantiate(bonusTextPrefab);
+        ScoreBonusText bonusText = Instantiate(bonusTextPrefab);
         bonusText.transform.position = transform.position;
     }
 }

@@ -34,6 +34,9 @@ public class PlayerDeath : MonoBehaviour {
         var firstPersonController = GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
         if (firstPersonController != null) firstPersonController.enabled = false;
 
+        var playerController = GetComponent<PlayerController>();
+        if (playerController != null) playerController.enabled = false;
+
         var rb = GetComponent<Rigidbody>();
         if (rb != null) rb.isKinematic = false;
 

@@ -2,16 +2,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 #pragma warning disable 0649
 
 public class Airdrop : MonoBehaviour {
 
     public event Action<Airdrop> OnDestroyed;
-    
+
     [SerializeField] ParticleSystem smoke;
 
-    bool didLand;
+    private bool didLand;
+
+    void Start() {
+
+        Assert.IsNotNull(smoke);
+    }
 
     void OnCollisionEnter(Collision collision) {
 

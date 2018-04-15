@@ -10067,7 +10067,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &848834317
 Transform:
@@ -10098,6 +10098,12 @@ MonoBehaviour:
     type: 2}
   pauseScreen: {fileID: 1064146823}
   tutorialEndScreen: {fileID: 858787919}
+  hints:
+  - {fileID: 1506684507}
+  - {fileID: 1689922528}
+  - {fileID: 1501951997}
+  - {fileID: 922164645}
+  - {fileID: 855634164}
 --- !u!1 &855634162
 GameObject:
   m_ObjectHideFlags: 0
@@ -14217,7 +14223,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1431935396
 Transform:
@@ -14249,7 +14255,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1468527215
 Transform:
@@ -20135,7 +20141,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2086113644
 Transform:
