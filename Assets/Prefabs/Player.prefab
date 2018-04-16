@@ -58,9 +58,10 @@ GameObject:
   - component: {fileID: 114499012602981378}
   - component: {fileID: 114355197564964138}
   - component: {fileID: 114989152791199634}
-  - component: {fileID: 114048021647343008}
-  - component: {fileID: 114135505768197822}
   - component: {fileID: 114305503479627358}
+  - component: {fileID: 114180166269577718}
+  - component: {fileID: 114135505768197822}
+  - component: {fileID: 114048021647343008}
   - component: {fileID: 114224879250061092}
   m_Layer: 8
   m_Name: Player
@@ -229,8 +230,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1464375293215242}
-  m_LocalRotation: {x: -0, y: 0.887783, z: -0, w: 0.46026233}
-  m_LocalPosition: {x: 41.51, y: 0.1, z: -29.73}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4423543281572270}
@@ -589,6 +590,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: cabfae866cab347928b74b7d0ca6bfa9, type: 3}
+--- !u!114 &114180166269577718
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1464375293215242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f5ed5297c823464ab3f24b054f84e50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  muzzleSpeed: 100
+  numSecondsTillFullWeaponCharge: 2
+  gunOffset: {x: 0, y: 0, z: -0.5}
+  bulletPrefab: {fileID: 1553683705690344, guid: 9ce9ff4a073494126b9d0c5370936521,
+    type: 2}
+  barrelEnd: {fileID: 4999013659595812}
+  gun: {fileID: 4737132672962148}
+  muzzleSpeedModifier:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: -0.9581532
+      outSlope: -0.9581532
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0.2
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  explosionSizeModifier:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0.2
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114224879250061092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -603,6 +658,8 @@ MonoBehaviour:
   behaviours:
   - {fileID: 114356696366790228}
   - {fileID: 114989152791199634}
+  - {fileID: 114305503479627358}
+  - {fileID: 114180166269577718}
 --- !u!114 &114305503479627358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -783,50 +840,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7483197867a2c43a7a8e5684e100df06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muzzleSpeed: 100
-  numSecondsTillFullWeaponCharge: 2
-  gunOffset: {x: 0, y: 0, z: -0.5}
-  bulletPrefab: {fileID: 1553683705690344, guid: 9ce9ff4a073494126b9d0c5370936521,
-    type: 2}
-  barrelEnd: {fileID: 4999013659595812}
-  gun: {fileID: 4737132672962148}
-  shield: {fileID: 114305503479627358}
-  muzzleSpeedModifier:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: -0.9581532
-      outSlope: -0.9581532
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0.2
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  explosionSizeModifier:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0.2
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!124 &124447382513367070
 Behaviour:
   m_ObjectHideFlags: 1

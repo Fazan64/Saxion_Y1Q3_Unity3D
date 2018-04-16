@@ -1582,8 +1582,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCoeficient: 5
   targetRigidbody: {fileID: 54025268361324086}
-  autoDetach: 1
-  autoDetachMinSpeed: 0.1
+  autoDetach: 0
+  autoDetachMinSpeed: 0.01
 --- !u!198 &198113360132294794
 ParticleSystem:
   m_ObjectHideFlags: 1

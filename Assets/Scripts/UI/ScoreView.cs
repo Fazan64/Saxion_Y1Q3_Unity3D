@@ -41,8 +41,5 @@ public class ScoreView : MonoBehaviour {
 
         textMesh.rectTransform.DOKill(complete: true);
         textMesh.rectTransform.DOPunchScale(Vector3.one * animationScale, animationDuration, animationVibrato);
-
-        //textMesh.DOKill(complete: true);
-        //textMesh.DOColor(Color.blue, animationDuration).SetEase(Ease.InFlash, overshoot: 2);
     }
 }
