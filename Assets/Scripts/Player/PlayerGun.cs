@@ -8,11 +8,12 @@ public class PlayerGun : MonoBehaviour {
 
     [SerializeField] float muzzleSpeed = 100f;
     [SerializeField] float numSecondsTillFullWeaponCharge = 2f;
-    [SerializeField] Vector3 gunOffset = Vector3.back * 0.5f;
+    [SerializeField] Collider ownCollider;
     [SerializeField] GameObject bulletPrefab;
-
+    [Space]
     [SerializeField] Transform barrelEnd;
     [SerializeField] Transform gun;
+    [SerializeField] Vector3 gunOffset = Vector3.back * 0.5f;
 
     [SerializeField] AnimationCurve muzzleSpeedModifier;
     [SerializeField] AnimationCurve explosionSizeModifier;
@@ -74,17 +75,17 @@ public class PlayerGun : MonoBehaviour {
             barrelEnd.rotation
         );
 
+        if (ownCollider != null) {
+            Physics.IgnoreCollision(bullet.GetComponent<Collider>(), ownCollider);
+        }
+
         bullet.GetComponent<Projectile>().explosionModifier = explosionSizeModifier.Evaluate(weaponChargeup);
 
         var rb = bullet.GetComponentInChildren<Rigidbody>();
         Assert.IsNotNull(rb);
 
-        float speedModifier = muzzleSpeedModifier.Evaluate(weaponChargeup);
-        Vector3 ownVelocity = GetComponent<CharacterController>().velocity;
-
-        Transform cameraTransform = Camera.main.transform;
-
         Vector3 direction;
+        Transform cameraTransform = Camera.main.transform;
         var ray = new Ray(cameraTransform.position, cameraTransform.forward);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit)) {    
@@ -93,8 +94,10 @@ public class PlayerGun : MonoBehaviour {
             direction = cameraTransform.forward;
         }
 
+        float speedModifier = muzzleSpeedModifier.Evaluate(weaponChargeup);
+
         rb.AddForce(
-            direction * muzzleSpeed * speedModifier + ownVelocity,
+            direction * muzzleSpeed * speedModifier,
             ForceMode.VelocityChange
         );
     }

@@ -19,9 +19,11 @@ public class TriggerEvents : MonoBehaviour {
 
         onTriggerEnter.Invoke(other);
 
+        GameObject playerGameObject = Player.instance.gameObject;
         if (
-            other.attachedRigidbody != null && 
-            other.attachedRigidbody.gameObject == Player.instance.gameObject
+            other.gameObject == playerGameObject ||
+            (other.attachedRigidbody != null && 
+             other.attachedRigidbody.gameObject == playerGameObject)
         ) {
             onPlayerTriggerEnter.Invoke();
         }
