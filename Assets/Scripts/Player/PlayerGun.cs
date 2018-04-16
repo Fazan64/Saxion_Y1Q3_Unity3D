@@ -16,6 +16,7 @@ public class PlayerGun : MonoBehaviour {
     [SerializeField] Transform barrelEnd;
     [SerializeField] Transform gunTransform;
     [SerializeField] Vector3 gunOffset = Vector3.back * 0.5f;
+    [SerializeField] LayerMask shootingRaycastLayerMask;
 
     [SerializeField] AnimationCurve muzzleSpeedModifier;
     [SerializeField] AnimationCurve explosionSizeModifier;
@@ -92,7 +93,7 @@ public class PlayerGun : MonoBehaviour {
         Transform cameraTransform = playerCamera.transform;
         var ray = new Ray(cameraTransform.position, cameraTransform.forward);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit)) {    
+        if (Physics.Raycast(ray, out hit, shootingRaycastLayerMask)) {    
             direction = (hit.point - barrelEnd.position).normalized;
         } else {
             direction = cameraTransform.forward;

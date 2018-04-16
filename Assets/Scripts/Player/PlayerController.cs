@@ -12,14 +12,12 @@ public class PlayerController : MonoBehaviour {
     private Shield shield;
     private PlayerGun playerGun;
 
-    // Use this for initialization
     void Start() {
 
         shield = GetComponent<Shield>();
         playerGun = GetComponent<PlayerGun>();
     }
 
-    // Update is called once per frame
     void Update() {
 
         if (Input.GetButtonDown("Shield")) {

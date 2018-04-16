@@ -612,6 +612,9 @@ MonoBehaviour:
   barrelEnd: {fileID: 4999013659595812}
   gunTransform: {fileID: 4737132672962148}
   gunOffset: {x: 0, y: 0, z: -0.5}
+  shootingRaycastLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967003
   muzzleSpeedModifier:
     serializedVersion: 2
     m_Curve:
