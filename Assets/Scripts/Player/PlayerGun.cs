@@ -88,21 +88,19 @@ public class PlayerGun : MonoBehaviour {
 
         var rb = bullet.GetComponentInChildren<Rigidbody>();
         Assert.IsNotNull(rb);
-
-        Vector3 direction;
+        Vector3 targetPosition;
         Transform cameraTransform = playerCamera.transform;
         var ray = new Ray(cameraTransform.position, cameraTransform.forward);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, shootingRaycastLayerMask)) {    
-            direction = (hit.point - barrelEnd.position).normalized;
+        if (Physics.Raycast(ray, out hit, shootingRaycastLayerMask)) {
+            targetPosition = hit.point;
         } else {
-            direction = cameraTransform.forward;
+            targetPosition = cameraTransform.forward * 1000f;
         }
+        Vector3 direction = (targetPosition - barrelEnd.position).normalized;
 
         float speedModifier = muzzleSpeedModifier.Evaluate(weaponChargeup);
-
         Vector3 ownVelocity = characterController.velocity;
-
         rb.AddForce(
             direction * muzzleSpeed * speedModifier + ownVelocity,
             ForceMode.VelocityChange

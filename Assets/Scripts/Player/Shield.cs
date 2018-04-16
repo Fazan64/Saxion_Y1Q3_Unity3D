@@ -8,6 +8,7 @@ public class Shield : MonoBehaviour {
     [SerializeField] float remainingEnergy = 100f;
     [SerializeField] float useTime = 1f;
     [SerializeField] float recoveryTime = 1f;
+    [SerializeField][Range(0f, 1f)] float maxOpacity = 1f;
 
     [SerializeField] new Collider collider;
     [SerializeField] new Renderer renderer;
@@ -34,7 +35,9 @@ public class Shield : MonoBehaviour {
     private void FixedUpdate() {
 
         float value = isOn ? Mathf.InverseLerp(0f, maxEnergy, remainingEnergy) : 0f;
-        renderer.material.SetFloat("_InvFade", value);
+        Color color = renderer.material.color;
+        color.a = Mathf.Lerp(0f, maxOpacity, value);;
+        renderer.material.color = color;
 
         if (isOn && remainingEnergy > 0f) {
 
