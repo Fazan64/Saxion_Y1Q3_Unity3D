@@ -26,6 +26,7 @@ public class Shield : MonoBehaviour {
         renderer = renderer ?? GetComponentInChildren<Renderer>();
 
         renderer.enabled = true;
+        renderer.material = Instantiate(renderer.material);
 
         TurnOff();
     }

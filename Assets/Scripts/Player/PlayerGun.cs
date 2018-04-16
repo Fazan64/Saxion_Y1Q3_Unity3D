@@ -9,10 +9,12 @@ public class PlayerGun : MonoBehaviour {
     [SerializeField] float muzzleSpeed = 100f;
     [SerializeField] float numSecondsTillFullWeaponCharge = 2f;
     [SerializeField] Collider ownCollider;
+    [SerializeField] Camera playerCamera;
+    [SerializeField] CharacterController characterController;
     [SerializeField] GameObject bulletPrefab;
     [Space]
     [SerializeField] Transform barrelEnd;
-    [SerializeField] Transform gun;
+    [SerializeField] Transform gunTransform;
     [SerializeField] Vector3 gunOffset = Vector3.back * 0.5f;
 
     [SerializeField] AnimationCurve muzzleSpeedModifier;
@@ -34,9 +36,11 @@ public class PlayerGun : MonoBehaviour {
         
         Assert.IsNotNull(bulletPrefab);
         Assert.IsNotNull(barrelEnd);
-        Assert.IsNotNull(gun);
+        Assert.IsNotNull(gunTransform);
+        Assert.IsNotNull(playerCamera);
+        Assert.IsNotNull(characterController);
 
-        defaultGunLocalPosition = gun.localPosition;
+        defaultGunLocalPosition = gunTransform.localPosition;
     }
 
     void FixedUpdate() {
@@ -49,7 +53,7 @@ public class PlayerGun : MonoBehaviour {
 
         Vector3 targetGunLocalPosition = defaultGunLocalPosition + gunOffset * weaponChargeup;
         targetGunLocalPosition += Random.onUnitSphere * 0.02f * weaponChargeup;
-        gun.localPosition = Vector3.MoveTowards(gun.localPosition, targetGunLocalPosition, 2f * Time.fixedDeltaTime);
+        gunTransform.localPosition = Vector3.MoveTowards(gunTransform.localPosition, targetGunLocalPosition, 2f * Time.fixedDeltaTime);
     }
 
     public void Hold() {
@@ -85,7 +89,7 @@ public class PlayerGun : MonoBehaviour {
         Assert.IsNotNull(rb);
 
         Vector3 direction;
-        Transform cameraTransform = Camera.main.transform;
+        Transform cameraTransform = playerCamera.transform;
         var ray = new Ray(cameraTransform.position, cameraTransform.forward);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit)) {    
@@ -96,8 +100,10 @@ public class PlayerGun : MonoBehaviour {
 
         float speedModifier = muzzleSpeedModifier.Evaluate(weaponChargeup);
 
+        Vector3 ownVelocity = characterController.velocity;
+
         rb.AddForce(
-            direction * muzzleSpeed * speedModifier,
+            direction * muzzleSpeed * speedModifier + ownVelocity,
             ForceMode.VelocityChange
         );
     }

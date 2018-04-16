@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 4219003017685884}
   - component: {fileID: 33534524367341278}
   - component: {fileID: 23745951558728310}
+  - component: {fileID: 136297018904140780}
   m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
@@ -577,6 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeTillRestart: 2
   timeScaleMultiplier: 0.4
+  afterDeathCollider: {fileID: 136297018904140780}
 --- !u!114 &114135505768197822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -603,10 +605,12 @@ MonoBehaviour:
   muzzleSpeed: 100
   numSecondsTillFullWeaponCharge: 2
   ownCollider: {fileID: 143536027038360792}
+  playerCamera: {fileID: 20597264192976116}
+  characterController: {fileID: 143536027038360792}
   bulletPrefab: {fileID: 1553683705690344, guid: 41cc621f09ac742aaa3b8b6ef5c5c5bb,
     type: 2}
   barrelEnd: {fileID: 4999013659595812}
-  gun: {fileID: 4737132672962148}
+  gunTransform: {fileID: 4737132672962148}
   gunOffset: {x: 0, y: 0, z: -0.5}
   muzzleSpeedModifier:
     serializedVersion: 2
@@ -865,6 +869,19 @@ SphereCollider:
   m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &136297018904140780
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1525073949992220}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &143536027038360792
 CharacterController:

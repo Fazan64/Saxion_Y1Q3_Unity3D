@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#pragma warning disable 0649
+
 [RequireComponent(typeof(Health))]
 public class PlayerDeath : MonoBehaviour {
 
-    public float timeTillRestart = 2f;
-    public float timeScaleMultiplier = 0.4f;
+    [SerializeField] float timeTillRestart = 2f;
+    [SerializeField] float timeScaleMultiplier = 0.4f;
+    [SerializeField] Collider afterDeathCollider;
 
     private bool didDie;
     private float originalTimeScale;
@@ -39,6 +42,8 @@ public class PlayerDeath : MonoBehaviour {
 
         var rb = GetComponent<Rigidbody>();
         if (rb != null) rb.isKinematic = false;
+
+        if (afterDeathCollider != null) afterDeathCollider.enabled = true;
 
         originalTimeScale      = Time.timeScale;
         originalFixedDeltaTime = Time.fixedDeltaTime;
