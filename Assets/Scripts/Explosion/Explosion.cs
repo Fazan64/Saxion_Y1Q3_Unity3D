@@ -22,19 +22,21 @@ public class Explosion : MonoBehaviour {
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
 
         var rigidbodies = new List<Rigidbody>();
+        var healths = new List<Health>();
 
         foreach (Collider col in colliders) {
-            
-            if (col.attachedRigidbody != null && !rigidbodies.Contains(col.attachedRigidbody)) {
 
+            if (col.attachedRigidbody != null && !rigidbodies.Contains(col.attachedRigidbody)) {
                 rigidbodies.Add(col.attachedRigidbody);
+            }
+
+            var health = col.GetComponentInParent<Health>();
+            if (health != null && !healths.Contains(health)) {
+                healths.Add(health);
             }
         }
 
         foreach (Rigidbody rb in rigidbodies) {
-
-            var health = rb.gameObject.GetComponent<Health>();
-            if (health != null) health.DealDamage(damage);
 
             rb.AddExplosionForce(
                 explosionForce * modifier, 
@@ -42,6 +44,11 @@ public class Explosion : MonoBehaviour {
                 radius * modifier,
                 upwardsModifier * modifier
             );
+        }
+
+        foreach (Health health in healths) {
+
+            health.DealDamage(damage);
         }
     }
 }
