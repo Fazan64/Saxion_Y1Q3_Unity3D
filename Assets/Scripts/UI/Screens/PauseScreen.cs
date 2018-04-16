@@ -25,9 +25,6 @@ public class PauseScreen : TransitionableScreen {
 
     protected override void OnTransitionIn() {
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
         canvasGroup.DOKill();
         canvasGroup
             .DOFade(1f, transitionDuration)
