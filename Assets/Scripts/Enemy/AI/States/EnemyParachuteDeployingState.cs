@@ -8,8 +8,6 @@ public class EnemyParachuteDeployingState : FSMState<Enemy> {
     [SerializeField] LayerMask groundLayerMask;
     [SerializeField] float groundCheckRadius = 1f;
 
-    bool didDetachParachute;
-
     public override void Enter() {
 
         base.Enter();
@@ -22,15 +20,11 @@ public class EnemyParachuteDeployingState : FSMState<Enemy> {
         
         base.Update();
 
-        if (!didDetachParachute) {
+        bool shouldDetachParachute = Physics.CheckSphere(transform.position, groundCheckRadius, groundLayerMask);
+        if (shouldDetachParachute) {
 
-            bool shouldDetachParachute = Physics.CheckSphere(transform.position, groundCheckRadius, groundLayerMask);
-            if (shouldDetachParachute) {
-
-                DetachParachuteIfAttached();
-                didDetachParachute = true;
-                agent.fsm.ChangeState<EnemySeekPlayerState>();
-            }
+            DetachParachuteIfAttached();
+            agent.fsm.ChangeState<EnemySeekPlayerState>();
         }
     }
 

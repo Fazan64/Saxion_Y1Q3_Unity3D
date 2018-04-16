@@ -9,7 +9,8 @@ public class Parachute : MonoBehaviour {
     [SerializeField] float dragCoeficient = 0.05f;
     [SerializeField] Rigidbody targetRigidbody;
     [SerializeField] bool autoDetach = true;
-    [SerializeField] float autoDetachMinSpeed = 0.1f;
+    [SerializeField] LayerMask groundLayerMask;
+    [SerializeField] float groundCheckRadius = 2f;
 
     bool isDetached;
 
@@ -20,9 +21,10 @@ public class Parachute : MonoBehaviour {
 	
 	void FixedUpdate () {
 
-        if (!isDetached && autoDetach && targetRigidbody.velocity.magnitude <= autoDetachMinSpeed) {
-            
-            Detach();
+        if (!isDetached && autoDetach) {
+            if (Physics.CheckSphere(transform.position, groundCheckRadius, groundLayerMask)) {
+                Detach();
+            }
         }
 
         ApplyForces();
