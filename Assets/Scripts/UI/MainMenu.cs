@@ -9,32 +9,20 @@ public class MainMenu : MonoBehaviour {
 
     void Start() {
 
-        UnlockCursor();
+        CursorHelper.Unlock();
     }
 
     public void StartGame() {
 
-        LockCursor();
+        CursorHelper.Lock();
 
         GameController.instance.StartGame();
     }
 
     public void StartTutorial() {
 
-        LockCursor();
+        CursorHelper.Lock();
 
         GameController.instance.StartTutorial();
-    }
-
-    private void UnlockCursor() {
-
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
-
-    private void LockCursor() {
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 }

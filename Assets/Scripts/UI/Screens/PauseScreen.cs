@@ -40,6 +40,7 @@ public class PauseScreen : TransitionableScreen {
             .SetUpdate(isIndependentUpdate: true);
 
         GetComponentInChildren<Button>().Select();
+        CursorHelper.Unlock();
     }
 
     protected override void OnTransitionOut() {
@@ -55,5 +56,7 @@ public class PauseScreen : TransitionableScreen {
             .DOScale(maxScale, transitionDuration)
             .SetEase(Ease.InExpo)
             .SetUpdate(isIndependentUpdate: true);
+        
+        CursorHelper.Lock();
     }
 }
