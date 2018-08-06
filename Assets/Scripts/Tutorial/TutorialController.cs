@@ -49,6 +49,10 @@ public class TutorialController : MonoBehaviour {
         Airdrop airdrop = Instantiate(airdropPrefab, startPosition, Quaternion.identity);
 
         airdrop.GetComponent<Pickup>().onPickedUp.AddListener(AirdropPickedUpHandler);
+        var health = airdrop.GetComponent<Health>();
+        if (health) {
+            health.SetCanBeReduced(false);
+        }
     }
 
     private void AirdropPickedUpHandler(Pickup pickup) {
